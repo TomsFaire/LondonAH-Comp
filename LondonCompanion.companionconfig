@@ -1,0 +1,2929 @@
+version: 12
+type: full
+companionBuild: 4.3.4+9244-stable-c14e5e3334
+pages:
+  "1":
+    id: FSBAcAMvGPyd76TuC3bwe
+    name: OP Controls
+    controls:
+      "0":
+        "0":
+          type: button
+          style:
+            text: Launch Slides
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 0
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - id: LrMEqXOijmjlrLPTPk8ce
+              definitionId: presentation_open
+              connectionId: ZNPCF_su82Whtd8PxRjVQ
+              options: {}
+              upgradeIndex: -1
+              type: feedback
+              style:
+                color: 16777215
+                bgcolor: 2188800
+                text: Launch Slides
+                textExpression: false
+              isInverted:
+                value: true
+                isExpression: false
+            - id: 5x7e5d90oI3MUxf8MnQMy
+              definitionId: presentation_open
+              connectionId: ZNPCF_su82Whtd8PxRjVQ
+              options: {}
+              upgradeIndex: -1
+              type: feedback
+              style:
+                color: 16777215
+                bgcolor: 16744576
+                text: Close Slides
+                textExpression: false
+              isInverted:
+                value: false
+                isExpression: false
+              disabled: false
+          steps:
+            "0":
+              action_sets:
+                "2000":
+                  - id: KQ4T-PPgPaVzL3kyyxuAg
+                    definitionId: close_presentation
+                    connectionId: ZNPCF_su82Whtd8PxRjVQ
+                    options: {}
+                    upgradeIndex: -1
+                    type: action
+                down:
+                  - id: I3-qBhFkxtGf2bIL3EyQX
+                    definitionId: open_presentation_with_notes
+                    connectionId: ZNPCF_su82Whtd8PxRjVQ
+                    options:
+                      url:
+                        value: $(custom:Slides)
+                        isExpression: false
+                    upgradeIndex: -1
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "1":
+          type: button
+          style:
+            text: Launch Notes
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 0
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - id: sOTTaSZDNPlZndyjVguMx
+              definitionId: notes_open
+              connectionId: ZNPCF_su82Whtd8PxRjVQ
+              options: {}
+              upgradeIndex: -1
+              type: feedback
+              style:
+                color: 16777215
+                bgcolor: 16728128
+                text: Close Notes
+                textExpression: false
+              isInverted:
+                value: false
+                isExpression: false
+            - id: jXtcDERxlB59hZB5p-ZDo
+              definitionId: notes_open
+              connectionId: ZNPCF_su82Whtd8PxRjVQ
+              options: {}
+              upgradeIndex: -1
+              type: feedback
+              style:
+                color: 16777215
+                bgcolor: 26112
+                text: Launch Notes
+                textExpression: false
+              isInverted:
+                value: true
+                isExpression: false
+          steps:
+            "0":
+              action_sets:
+                "2000":
+                  - id: pVaq0dI7Iyo_BXw9J-t9e
+                    definitionId: close_speaker_notes
+                    connectionId: ZNPCF_su82Whtd8PxRjVQ
+                    options: {}
+                    upgradeIndex: -1
+                    type: action
+                down:
+                  - id: GgQHcYXS3bsF_khqqSSMD
+                    definitionId: open_speaker_notes
+                    connectionId: ZNPCF_su82Whtd8PxRjVQ
+                    options: {}
+                    upgradeIndex: -1
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "6":
+          type: button
+          style:
+            text: Toggle Screen Share
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 255
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - id: vWoDreFYpCj0Y3YWUr8Xe
+                    definitionId: startScreenShare
+                    connectionId: j9tfVtJKrj23fIDesN59j
+                    options:
+                      id:
+                        value: 0
+                        isExpression: false
+                    upgradeIndex: 5
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "7":
+          type: button
+          style:
+            text: Join meeting
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 255
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - id: R74alS0aNZ9cCiBshfrk8
+                    definitionId: joinMeeting
+                    connectionId: jWnE39_hYM2ysLJw5afi1
+                    options:
+                      targetType:
+                        value: roomIndex
+                        isExpression: false
+                      roomID:
+                        value: ""
+                        isExpression: false
+                      roomName:
+                        value: ""
+                        isExpression: false
+                      roomIndex:
+                        value: "1"
+                        isExpression: false
+                      meetingID:
+                        value: $(custom:meetingID)
+                        isExpression: false
+                      meetingPass:
+                        value: $(custom:meetingPasscode)
+                        isExpression: false
+                      userName:
+                        value: London
+                        isExpression: false
+                    upgradeIndex: -1
+                    type: action
+                  - id: WjpW5Qd4FheGB8IZlTwc8
+                    definitionId: joinMeeting
+                    connectionId: j9tfVtJKrj23fIDesN59j
+                    options:
+                      meetingID:
+                        value: $(custom:meetingID)
+                        isExpression: false
+                      password:
+                        value: $(custom:meetingPasscode)
+                        isExpression: false
+                      name:
+                        value: Slides
+                        isExpression: false
+                    upgradeIndex: 5
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+      "1":
+        "0":
+          type: button
+          style:
+            text: "Reload Slides "
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 0
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - id: -vlbnYt_nuE5HABscIHiQ
+              definitionId: presentation_open
+              connectionId: ZNPCF_su82Whtd8PxRjVQ
+              options: {}
+              upgradeIndex: -1
+              type: feedback
+              style:
+                color: 16777215
+                bgcolor: 16711680
+              isInverted:
+                value: false
+                isExpression: false
+            - id: kJp_CTvH0bSeIgBChiDzb
+              definitionId: presentation_open
+              connectionId: ZNPCF_su82Whtd8PxRjVQ
+              options: {}
+              upgradeIndex: -1
+              type: feedback
+              style:
+                color: 0
+                bgcolor: 16761024
+              isInverted:
+                value: true
+                isExpression: false
+          steps:
+            "0":
+              action_sets:
+                "1000":
+                  - id: wdlEah0D54bIXOpCXGxtY
+                    definitionId: reload_presentation
+                    connectionId: ZNPCF_su82Whtd8PxRjVQ
+                    options: {}
+                    upgradeIndex: -1
+                    type: action
+                down: []
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "1":
+          type: button
+          style:
+            text: "Show QR Code "
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 2188800
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - id: wuVjl2T96N7MfMYjAKDf7
+                    definitionId: show_share_qr
+                    connectionId: ZNPCF_su82Whtd8PxRjVQ
+                    options:
+                      durationSec:
+                        value: 20
+                        isExpression: false
+                    upgradeIndex: -1
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+      "2":
+        "0":
+          type: button
+          style:
+            text: Notes\n-
+            textExpression: false
+            size: "18"
+            png64: null
+            alignment: center:bottom
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 2188800
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - id: r0RpvslpAflJJPpxmEwgD
+                    definitionId: zoom_out_notes
+                    connectionId: ZNPCF_su82Whtd8PxRjVQ
+                    options: {}
+                    upgradeIndex: -1
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "1":
+          type: button
+          style:
+            text: Notes\n
+            textExpression: false
+            size: "18"
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 2188800
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - id: RcQ8XiJbma11nDxPBD24u
+                    definitionId: scroll_notes_up
+                    connectionId: ZNPCF_su82Whtd8PxRjVQ
+                    options: {}
+                    upgradeIndex: -1
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "2":
+          type: button
+          style:
+            text: Notes\n+
+            textExpression: false
+            size: "18"
+            png64: null
+            alignment: center:bottom
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 2188800
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - id: u5cpbpnWBlHuf9yPGIMK7
+                    definitionId: zoom_in_notes
+                    connectionId: ZNPCF_su82Whtd8PxRjVQ
+                    options: {}
+                    upgradeIndex: -1
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "6":
+          type: button
+          style:
+            text: Spotlight London
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 255
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - id: CSjbCkWNIECVgVKQrlypX
+              definitionId: user_Name_Based_Advanced
+              connectionId: j9tfVtJKrj23fIDesN59j
+              options:
+                name:
+                  value: $(custom:Speaker0)
+                  isExpression: false
+              upgradeIndex: 5
+              type: feedback
+              isInverted:
+                value: false
+                isExpression: false
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - id: ZivRXkZygTAHXQ4uIjI0S
+                    definitionId: spotLight
+                    connectionId: j9tfVtJKrj23fIDesN59j
+                    options:
+                      userName:
+                        value: $(custom:Speaker0)
+                        isExpression: false
+                    upgradeIndex: 5
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "7":
+          type: button
+          style:
+            text: Spotlight Remote $(custom:Speaker1)
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 255
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - id: pTlacN-N6jdKdNlB24qWx
+              definitionId: user_Name_Based_Advanced
+              connectionId: j9tfVtJKrj23fIDesN59j
+              options:
+                name:
+                  value: $(custom:Speaker1)
+                  isExpression: false
+              upgradeIndex: 5
+              type: feedback
+              isInverted:
+                value: false
+                isExpression: false
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - id: yCb5ZBPbcwXSyDN7U5CCD
+                    definitionId: spotLight
+                    connectionId: j9tfVtJKrj23fIDesN59j
+                    options:
+                      userName:
+                        value: $(custom:Speaker1)
+                        isExpression: false
+                    upgradeIndex: 5
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+      "3":
+        "0":
+          type: button
+          style:
+            text: <<\nSlide
+            textExpression: false
+            size: "18"
+            png64: null
+            alignment: center:top
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 2188800
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - id: GYFfbKliZxu2uqazqSvnj
+                    definitionId: previous_slide
+                    connectionId: ZNPCF_su82Whtd8PxRjVQ
+                    options: {}
+                    upgradeIndex: -1
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "1":
+          type: button
+          style:
+            text: ↓\nNotes
+            textExpression: false
+            size: "18"
+            png64: null
+            alignment: center:top
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 2188800
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - id: ogyLNGh5caw_ADUat04of
+                    definitionId: scroll_notes_down
+                    connectionId: ZNPCF_su82Whtd8PxRjVQ
+                    options: {}
+                    upgradeIndex: -1
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "2":
+          type: button
+          style:
+            text: ">>\\nSlide"
+            textExpression: false
+            size: "18"
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 2188800
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - id: gijj0qg5Da4ZQWwioKp2Z
+                    definitionId: next_slide
+                    connectionId: ZNPCF_su82Whtd8PxRjVQ
+                    options: {}
+                    upgradeIndex: -1
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "6":
+          type: button
+          style:
+            text: Spotlight\n$(custom:Speaker2)
+            textExpression: false
+            size: "14"
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 255
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - id: mqmbIfBQZ6kuJLkmCQYNt
+              definitionId: user_Name_Based_Advanced
+              connectionId: j9tfVtJKrj23fIDesN59j
+              options:
+                name:
+                  value: $(custom:Speaker2)
+                  isExpression: false
+              upgradeIndex: 5
+              type: feedback
+              isInverted:
+                value: false
+                isExpression: false
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - id: i9nqGThgIkcTneTOEzrcn
+                    definitionId: spotLight
+                    connectionId: j9tfVtJKrj23fIDesN59j
+                    options:
+                      userName:
+                        value: $(custom:Speaker2)
+                        isExpression: false
+                    upgradeIndex: 5
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "7":
+          type: button
+          style:
+            text: Spotlight\n$(custom:Speaker3)
+            textExpression: false
+            size: "14"
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 255
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - id: rTOEdpkycrUDbBBZS4Obn
+              definitionId: user_Name_Based_Advanced
+              connectionId: j9tfVtJKrj23fIDesN59j
+              options:
+                name:
+                  value: $(custom:Speaker3)
+                  isExpression: false
+              upgradeIndex: 5
+              type: feedback
+              isInverted:
+                value: false
+                isExpression: false
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - id: PzL1466WLQ9qd50rC-Thm
+                    definitionId: spotLight
+                    connectionId: j9tfVtJKrj23fIDesN59j
+                    options:
+                      userName:
+                        value: $(custom:Speaker3)
+                        isExpression: false
+                    upgradeIndex: 5
+                    type: action
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+    gridSize: &a1
+      minColumn: 0
+      maxColumn: 7
+      minRow: 0
+      maxRow: 3
+  "2":
+    id: -bC2YwXruGh2gyuSVOqXJ
+    name: StageTimer London
+    controls:
+      "0":
+        "0":
+          type: button
+          style:
+            text: Start/stop
+            textExpression: false
+            size: "14"
+            png64: |
+              data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAAA6CAMAAA
+              Apx5/4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAOVBMVEUAAAD///////////
+              ////////////////////////////////////////////////////////////
+              8KOjVvAAAAEnRSTlMAECAwQFBgcH+Aj5Cfr8DP3+8H0QoWAAAAkklEQVRYw+
+              2VQQ7CMAwEm1KgaaHE8//HcgGJiGPmgITnASOvbK2nKUlGWSNus2bbANrF0g
+              UAPKQBebMWVeck5gNhJXSsro52VnWjib90tKuqgzarOthcHdXVxU/rdlW3m6
+              s4FvFQQj3jezErYBErIGoRC+ow63M0Z6+ryut5Pcbj5DzGOnxqPXuEkzNJki
+              RJ/pMnMJAdaP3cKN8AAAAASUVORK5CYII=
+            alignment: left:bottom
+            pngalignment: center:top
+            color: 16777215
+            bgcolor: 26112
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: Udk1q0sTNVJCpIr9rdZa5
+              definitionId: isRunning
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                bgcolor: 16394794
+                color: 16777215
+                png64: |
+                  data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAAA6BAMAAA
+                  DsN3L5AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFVBMVEUAAAD///////////
+                  ////////////9Iz20EAAAABnRSTlMAf4CPkO9T4O/6AAAASklEQVRIx2NgGA
+                  WEgWhaWlowEo0DMKeBgAKcxgVYwfIBcBoXYAPLJ8DpUXWj6kbV0U4dsfmSCS
+                  zvAKdxAlegdBASPQpGwSgYzAAAZ4iCBcCPC08AAAAASUVORK5CYII=
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: ilfJeYpF_Gkel5xnPnPBN
+                    definitionId: start_or_stop
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options: {}
+                    upgradeIndex: -1
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "1":
+          type: button
+          style:
+            text: $(stagetimer:currentTimerName)\n$(stagetimer:currentTimerSpeaker)\n$(stagetimer:currentTimerDuration)
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 0
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: LB3mOgl1hO6JYjlGuWMY2
+              definitionId: isOverTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                color: 16776960
+                bgcolor: 13369344
+              upgradeIndex: -1
+            - type: feedback
+              id: yI7QSoTXcrWNb0f-9hR5-
+              definitionId: isOnTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                color: 16777215
+                bgcolor: 39168
+              upgradeIndex: -1
+            - type: feedback
+              id: lbly3cnZ5KVeQd08xhsii
+              definitionId: isRedPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                color: 16777215
+                bgcolor: 15094054
+              upgradeIndex: -1
+            - type: feedback
+              id: bruZ_t0uyBhJpsE8ippLJ
+              definitionId: isYellowPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                color: 16777215
+                bgcolor: 16096780
+              upgradeIndex: -1
+            - type: feedback
+              id: nPTqA0ATrummSpOF40tVB
+              definitionId: isStopped
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                bgcolor: 1656100
+                color: 16777215
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: LhMrTzYtAHdd2NbhHx4t8
+                    definitionId: start
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options: {}
+                    upgradeIndex: -1
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "2":
+          type: button
+          style:
+            text: $(stagetimer:currentTimerRemainingMinutes)
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 0
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: UJ1m1AIB-KZ1iyoZ1irDQ
+              definitionId: isOverTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                color: 16776960
+                bgcolor: 13369344
+              upgradeIndex: -1
+            - type: feedback
+              id: 8yX0EKOCcC9PMN4juZ3dx
+              definitionId: isOnTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                color: 16777215
+                bgcolor: 39168
+              upgradeIndex: -1
+            - type: feedback
+              id: lZ5MaFgaqE6GJc47_Ppb7
+              definitionId: isRedPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                color: 16777215
+                bgcolor: 15094054
+              upgradeIndex: -1
+            - type: feedback
+              id: vtSfJaOg3IrvYsbxbd2Zk
+              definitionId: isYellowPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                color: 16777215
+                bgcolor: 16096780
+              upgradeIndex: -1
+            - type: feedback
+              id: YIuzY06g7mKKLuc9yqiEU
+              definitionId: isStopped
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                bgcolor: 1656100
+                color: 16777215
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down: []
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "3":
+          type: button
+          style:
+            text: $(stagetimer:currentTimerRemainingSeconds)
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16777215
+            bgcolor: 0
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: plgZdyZp4WFhglgmxzWm3
+              definitionId: isOverTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                color: 16776960
+                bgcolor: 13369344
+              upgradeIndex: -1
+            - type: feedback
+              id: 7IfUsCoRfYdDlh5P1obGf
+              definitionId: isOnTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                color: 16777215
+                bgcolor: 39168
+              upgradeIndex: -1
+            - type: feedback
+              id: 9YYHDrWnvE7Zvjgu4k4Nz
+              definitionId: isRedPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                color: 16777215
+                bgcolor: 15094054
+              upgradeIndex: -1
+            - type: feedback
+              id: svu9csueNrn7eRrh-GTrf
+              definitionId: isYellowPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                color: 16777215
+                bgcolor: 16096780
+              upgradeIndex: -1
+            - type: feedback
+              id: Dzwdm6Cu6wF0n3QmWu3nV
+              definitionId: isStopped
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                bgcolor: 1656100
+                color: 16777215
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down: []
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "4":
+          type: button
+          style:
+            text: Clear MSG
+            textExpression: false
+            size: "14"
+            png64: |
+              data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAAA6CAMAAA
+              Apx5/4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAP1BMVEUAAAD///////////
+              ////////////////////////////////////////////////////////////
+              ////////9Du/pqAAAAFHRSTlMAECAwQFBgcH+Aj5CfoK+/wM/f702OQ14AAA
+              DcSURBVFjD7dbRDoIwDAXQu6JDRWTr+v/f6gOaMBEIXR97P+AkbZq7AR6POo
+              GZ0LP8TY5nuYcID7KZ/iTHshs+ydGBd3p7gy2H3pbbHVhzLfQy5YC7LYcLm3
+              E3AKBsxclEmwNrOOEOAGIx4kRuGxej5OQZAITRihP+u0A1JyUCQMdG3HeBkx
+              UneTVwEyd8AYArt3DVdPXFJAXXVef7JABhLtVCqoIaU0op5eXF9Kqnp2qVmR
+              vColQfjVyJdakytXCZfkuVG7jPoMtSHbRcV+L6VeLgPy+Px+PxeA7zBmxuLz
+              3gMRqIAAAAAElFTkSuQmCC
+            alignment: center:bottom
+            pngalignment: center:top
+            color: 16777215
+            bgcolor: 0
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: ZJ8ArM6HHkBh6g_uthwLl
+              definitionId: messageIsShowing
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              isInverted:
+                value: false
+                isExpression: false
+              style:
+                bgcolor: 16394794
+                color: 16777215
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: oix5YTpIGAcMfAv5gMwwY
+                    definitionId: hide_message
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: ""
+                        isExpression: false
+                    upgradeIndex: -1
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+      "1":
+        "0":
+          type: button
+          style:
+            text: Timer 1\n$(custom:Timer1)
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 0
+            bgcolor: 16777215
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: TFDBkCTSfw4kOAF5Qp5cT
+              definitionId: isYellowPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 16096780
+              upgradeIndex: -1
+            - type: feedback
+              id: zfQvoTZZnSpCTKSAn_S-0
+              definitionId: isRedPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 15094054
+              upgradeIndex: -1
+            - type: feedback
+              id: gsHgwggTElvlU1LXBBEBF
+              definitionId: isOverTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16776960
+                bgcolor: 16711680
+              upgradeIndex: -1
+            - type: feedback
+              id: vSAlyEMLlYmGFoLciNoqX
+              definitionId: isOnTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                bgcolor: 26112
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: R3IOetFeSREgwm1up5H_8
+                    definitionId: reset_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 2
+                        isExpression: false
+                      timer_id:
+                        value: ""
+                        isExpression: false
+                    disabled: false
+                    upgradeIndex: -1
+                  - id: Y783Rq6Ko5rC5jzx3oG1Z
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "1000"
+                    type: action
+                    children: {}
+                  - id: UwNqnMhwBHO7TYfw5RJZU
+                    definitionId: start_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 2
+                        isExpression: false
+                    upgradeIndex: -1
+                    type: action
+                  - id: lDVfqxLNsjiZHkqyPoDiG
+                    definitionId: custom_variable_set_value
+                    connectionId: internal
+                    options:
+                      name:
+                        isExpression: false
+                        value: Timer1
+                      create:
+                        isExpression: false
+                        value: false
+                      value:
+                        isExpression: true
+                        value: $(stagetimer:currentTimerName)
+                    type: action
+                    children: {}
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "1":
+          type: button
+          style:
+            text: Timer 2\n$(custom:Timer2)
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 0
+            bgcolor: 16777215
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: Q4rRYxc0wZPfipQ-XRHKT
+              definitionId: isYellowPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 16096780
+              upgradeIndex: -1
+            - type: feedback
+              id: SW_X5c9pJ6Y2w8dq9LFvk
+              definitionId: isRedPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 15094054
+              upgradeIndex: -1
+            - type: feedback
+              id: FIp3skgu3vueDppGrWbW3
+              definitionId: isOverTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16776960
+                bgcolor: 16711680
+              upgradeIndex: -1
+            - type: feedback
+              id: TsLn4OKhpT4-_vEstHO9d
+              definitionId: isOnTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                bgcolor: 26112
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: LRdm8qRXkt0GhajXrAXu8
+                    definitionId: reset_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 3
+                        isExpression: false
+                      timer_id:
+                        value: ""
+                        isExpression: false
+                    disabled: false
+                    upgradeIndex: -1
+                  - id: DgdCq1XaYhDpfCsZL3GsM
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "1000"
+                    type: action
+                    children: {}
+                  - id: 0MTaW2B3JTd-XwF-6uZpX
+                    definitionId: start_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 3
+                        isExpression: false
+                    upgradeIndex: -1
+                    type: action
+                  - id: vzZ6dQNr8um73Z55TzLJ1
+                    definitionId: custom_variable_set_value
+                    connectionId: internal
+                    options:
+                      name:
+                        isExpression: false
+                        value: Timer2
+                      create:
+                        isExpression: false
+                        value: false
+                      value:
+                        isExpression: true
+                        value: $(stagetimer:currentTimerName)
+                    type: action
+                    children: {}
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "2":
+          type: button
+          style:
+            text: Timer 3\n$(custom:Timer3)
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 0
+            bgcolor: 16777215
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: E0wxLc4p9DxNceJ_dhQhY
+              definitionId: isYellowPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 16096780
+              upgradeIndex: -1
+            - type: feedback
+              id: bzcH8JJrKsXoCDi8xMkdg
+              definitionId: isRedPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 15094054
+              upgradeIndex: -1
+            - type: feedback
+              id: np3MosJ5pNG4XEYcEKFgM
+              definitionId: isOverTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16776960
+                bgcolor: 16711680
+              upgradeIndex: -1
+            - type: feedback
+              id: DASQepOaKYfXqPcP9LVI-
+              definitionId: isOnTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                bgcolor: 26112
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: bYu6HgEmUscSjWOpgQPDU
+                    definitionId: reset_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 4
+                        isExpression: false
+                      timer_id:
+                        value: ""
+                        isExpression: false
+                    disabled: false
+                    upgradeIndex: -1
+                  - id: wWEE_vvHOPx9alAuIU6MU
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "1000"
+                    type: action
+                    children: {}
+                  - id: ypzj-yFmzbt9gOz5GVdLr
+                    definitionId: start_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 4
+                        isExpression: false
+                    upgradeIndex: -1
+                    type: action
+                  - id: 1h2CfC4YSmQWd72B0kV8Y
+                    definitionId: custom_variable_set_value
+                    connectionId: internal
+                    options:
+                      name:
+                        isExpression: false
+                        value: Timer3
+                      create:
+                        isExpression: false
+                        value: false
+                      value:
+                        isExpression: true
+                        value: $(stagetimer:currentTimerName)
+                    type: action
+                    children: {}
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "3":
+          type: button
+          style:
+            text: Timer 4\n$(custom:Timer4)
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 0
+            bgcolor: 16777215
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: Om1J27Wweb7ZVYLHfqWFO
+              definitionId: isYellowPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 16096780
+              upgradeIndex: -1
+            - type: feedback
+              id: mOKEV1u0xelKbtBJJF1eZ
+              definitionId: isRedPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 15094054
+              upgradeIndex: -1
+            - type: feedback
+              id: mTlD2tUH6-JPXQfrejnJT
+              definitionId: isOverTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16776960
+                bgcolor: 16711680
+              upgradeIndex: -1
+            - type: feedback
+              id: 0xV5cTd_m9vdYLSrIBSpo
+              definitionId: isOnTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                bgcolor: 26112
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: m5awTHR5ZPCaW8bXoNSUA
+                    definitionId: reset_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 5
+                        isExpression: false
+                      timer_id:
+                        value: ""
+                        isExpression: false
+                    disabled: false
+                    upgradeIndex: -1
+                  - id: VdOIwGN-XCT5LHp2p5kou
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "1000"
+                    type: action
+                    children: {}
+                  - id: 5ndzVmxmFTJ5yyiED4u75
+                    definitionId: start_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 5
+                        isExpression: false
+                    upgradeIndex: -1
+                    type: action
+                  - id: cFnaOOIAx3PL3bF9G3voM
+                    definitionId: custom_variable_set_value
+                    connectionId: internal
+                    options:
+                      name:
+                        isExpression: false
+                        value: Timer4
+                      create:
+                        isExpression: false
+                        value: false
+                      value:
+                        isExpression: true
+                        value: $(stagetimer:currentTimerName)
+                    type: action
+                    children: {}
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "4":
+          type: button
+          style:
+            text: Timer 5\n$(custom:Timer5)
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 0
+            bgcolor: 16777215
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: znLK9-E0jKi-vpzqTBKWM
+              definitionId: isYellowPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 16096780
+              upgradeIndex: -1
+            - type: feedback
+              id: Gl_NQtTy0br73OGbPvzDS
+              definitionId: isRedPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 15094054
+              upgradeIndex: -1
+            - type: feedback
+              id: JTldEbdlMvmvh1pXJf7Pz
+              definitionId: isOverTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16776960
+                bgcolor: 16711680
+              upgradeIndex: -1
+            - type: feedback
+              id: Qz_YZbVIchJQQHH5h0poA
+              definitionId: isOnTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                bgcolor: 26112
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: TACMO75FOBQIuVm7QKssv
+                    definitionId: reset_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 6
+                        isExpression: false
+                      timer_id:
+                        value: ""
+                        isExpression: false
+                    disabled: false
+                    upgradeIndex: -1
+                  - id: qPbVTT3x5zIGGZ4MVauy_
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "1000"
+                    type: action
+                    children: {}
+                  - id: 8OA0QNojuzBQrz1yofm7P
+                    definitionId: start_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 6
+                        isExpression: false
+                    upgradeIndex: -1
+                    type: action
+                  - id: lBezlLbTq3fITbY8uwWlx
+                    definitionId: custom_variable_set_value
+                    connectionId: internal
+                    options:
+                      name:
+                        isExpression: false
+                        value: Timer5
+                      create:
+                        isExpression: false
+                        value: false
+                      value:
+                        isExpression: true
+                        value: $(stagetimer:currentTimerName)
+                    type: action
+                    children: {}
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "5":
+          type: button
+          style:
+            text: Timer 6\n$(custom:Timer6)
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 0
+            bgcolor: 16777215
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: RyymJKpFppa-uvSdtLKuo
+              definitionId: isYellowPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 16096780
+              upgradeIndex: -1
+            - type: feedback
+              id: 2Qs2lqOknBcCVT_ts5Mr4
+              definitionId: isRedPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 15094054
+              upgradeIndex: -1
+            - type: feedback
+              id: yp-HzL1ISfsAWiQXHpWyI
+              definitionId: isOverTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16776960
+                bgcolor: 16711680
+              upgradeIndex: -1
+            - type: feedback
+              id: hA_0epXpA0bg4ydbg-MD9
+              definitionId: isOnTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                bgcolor: 26112
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: CxVEYZCgGwMA952JETnAv
+                    definitionId: reset_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 7
+                        isExpression: false
+                      timer_id:
+                        value: ""
+                        isExpression: false
+                    disabled: false
+                    upgradeIndex: -1
+                  - id: 0BT5rqzB3X7fC_7gVPJ90
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "1000"
+                    type: action
+                    children: {}
+                  - id: at1iXzkzuU6alPtTnT9K4
+                    definitionId: start_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 7
+                        isExpression: false
+                    upgradeIndex: -1
+                    type: action
+                  - id: 6RTjzaz_aYv9wvB21dcqK
+                    definitionId: custom_variable_set_value
+                    connectionId: internal
+                    options:
+                      name:
+                        isExpression: false
+                        value: Timer6
+                      create:
+                        isExpression: false
+                        value: false
+                      value:
+                        isExpression: true
+                        value: $(stagetimer:currentTimerName)
+                    type: action
+                    children: {}
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+      "2":
+        "0":
+          type: button
+          style:
+            text: Timer 7\n$(custom:Timer7)
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 0
+            bgcolor: 16777215
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: m8B0v9Wycgu2N-yQuq0qW
+              definitionId: isYellowPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 16096780
+              upgradeIndex: -1
+            - type: feedback
+              id: nMdtu9M3cs0kXRL9JymPp
+              definitionId: isRedPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 15094054
+              upgradeIndex: -1
+            - type: feedback
+              id: rCItglG_9E9Dh_f4FgwkQ
+              definitionId: isOverTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16776960
+                bgcolor: 16711680
+              upgradeIndex: -1
+            - type: feedback
+              id: -bMhtvihtC01PPINKiM6S
+              definitionId: isOnTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                bgcolor: 26112
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: d6ocgD3YhCAmp84duERqi
+                    definitionId: reset_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 8
+                        isExpression: false
+                      timer_id:
+                        value: ""
+                        isExpression: false
+                    disabled: false
+                    upgradeIndex: -1
+                  - id: yGhGHy7b3d_GidGLhvXN7
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "1000"
+                    type: action
+                    children: {}
+                  - id: QcftlmG2Orv6FWkei7XRA
+                    definitionId: start_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 8
+                        isExpression: false
+                    upgradeIndex: -1
+                    type: action
+                  - id: WdWMA7ZY_LAZOFrUAlITs
+                    definitionId: custom_variable_set_value
+                    connectionId: internal
+                    options:
+                      name:
+                        isExpression: false
+                        value: Timer7
+                      create:
+                        isExpression: false
+                        value: false
+                      value:
+                        isExpression: true
+                        value: $(stagetimer:currentTimerName)
+                    type: action
+                    children: {}
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "1":
+          type: button
+          style:
+            text: Timer 8\n$(custom:Timer8)
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 0
+            bgcolor: 16777215
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: qAmkkCK9W1Zagx9Hq1m4a
+              definitionId: isYellowPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 16096780
+              upgradeIndex: -1
+            - type: feedback
+              id: xZ8jmAs6saJEF6xwZQrgz
+              definitionId: isRedPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 15094054
+              upgradeIndex: -1
+            - type: feedback
+              id: lCtByzTpOIRxPHhl2djdP
+              definitionId: isOverTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16776960
+                bgcolor: 16711680
+              upgradeIndex: -1
+            - type: feedback
+              id: EHI4PDMltnyKBWuIoE3LO
+              definitionId: isOnTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                bgcolor: 26112
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: B4UsUJmmtROP6VBHlMtU8
+                    definitionId: reset_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 9
+                        isExpression: false
+                      timer_id:
+                        value: ""
+                        isExpression: false
+                    disabled: false
+                    upgradeIndex: -1
+                  - id: CEd8gE86wKzq41fgPJnBs
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "1000"
+                    type: action
+                    children: {}
+                  - id: pqUuyIs7lhra7web1yweb
+                    definitionId: start_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 9
+                        isExpression: false
+                    upgradeIndex: -1
+                    type: action
+                  - id: nH7MC4zrThFoxJsYvSVPq
+                    definitionId: custom_variable_set_value
+                    connectionId: internal
+                    options:
+                      name:
+                        isExpression: false
+                        value: Timer8
+                      create:
+                        isExpression: false
+                        value: false
+                      value:
+                        isExpression: true
+                        value: $(stagetimer:currentTimerName)
+                    type: action
+                    children: {}
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "2":
+          type: button
+          style:
+            text: Timer 9\n$(custom:Timer9)
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 0
+            bgcolor: 16777215
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: UiZwr0vt-4MyKGlUWKL5p
+              definitionId: isYellowPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 16096780
+              upgradeIndex: -1
+            - type: feedback
+              id: DXjgKqRW9HhXJappAt3o3
+              definitionId: isRedPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 15094054
+              upgradeIndex: -1
+            - type: feedback
+              id: ZSDps2dNiZrVE7GzO1gTL
+              definitionId: isOverTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16776960
+                bgcolor: 16711680
+              upgradeIndex: -1
+            - type: feedback
+              id: aLzvKQltIpmp92QtMIh8K
+              definitionId: isOnTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                bgcolor: 26112
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: YXfh3C5sSiknJtTe2Gnjz
+                    definitionId: reset_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 10
+                        isExpression: false
+                      timer_id:
+                        value: ""
+                        isExpression: false
+                    disabled: false
+                    upgradeIndex: -1
+                  - id: SX7l52m08e43eHFPTuEq2
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "1000"
+                    type: action
+                    children: {}
+                  - id: A_83m3_VuyD82f3Y8Q3O9
+                    definitionId: start_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 10
+                        isExpression: false
+                    upgradeIndex: -1
+                    type: action
+                  - id: yxiIFEIoPC7NUzdokfYr-
+                    definitionId: custom_variable_set_value
+                    connectionId: internal
+                    options:
+                      name:
+                        isExpression: false
+                        value: Timer9
+                      create:
+                        isExpression: false
+                        value: false
+                      value:
+                        isExpression: true
+                        value: $(stagetimer:currentTimerName)
+                    type: action
+                    children: {}
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "3":
+          type: button
+          style:
+            text: Timer 10\n$(custom:Timer10)
+            textExpression: false
+            size: auto
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 0
+            bgcolor: 16777215
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks:
+            - type: feedback
+              id: 2cywWWqIi477amH-WsiFF
+              definitionId: isYellowPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 16096780
+              upgradeIndex: -1
+            - type: feedback
+              id: ySpc1_WLHkcBjUdN4Ytr0
+              definitionId: isRedPhase
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16777215
+                bgcolor: 15094054
+              upgradeIndex: -1
+            - type: feedback
+              id: l2N-VdStgqF3FQtoKVJYa
+              definitionId: isOverTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                color: 16776960
+                bgcolor: 16711680
+              upgradeIndex: -1
+            - type: feedback
+              id: nIti_nrWdVQQRupu_mrpc
+              definitionId: isOnTime
+              connectionId: vyABJOP3eD0ACDiiHSnS1
+              options: {}
+              disabled: true
+              isInverted:
+                isExpression: false
+                value: false
+              style:
+                bgcolor: 26112
+              upgradeIndex: -1
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: oMk3kwHwsdhArIbkFUuB4
+                    definitionId: reset_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 11
+                        isExpression: false
+                      timer_id:
+                        value: ""
+                        isExpression: false
+                    disabled: false
+                    upgradeIndex: -1
+                  - id: WaWXFyTfjkQCaDZFtfZPv
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "1000"
+                    type: action
+                    children: {}
+                  - id: 9bB2nKflm1LkKw4jhUFBe
+                    definitionId: start_timer
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 11
+                        isExpression: false
+                    upgradeIndex: -1
+                    type: action
+                  - id: ukd4npWcyEoBJ_qWG3O7v
+                    definitionId: custom_variable_set_value
+                    connectionId: internal
+                    options:
+                      name:
+                        isExpression: false
+                        value: Timer10
+                      create:
+                        isExpression: false
+                        value: false
+                      value:
+                        isExpression: true
+                        value: $(stagetimer:currentTimerName)
+                    type: action
+                    children: {}
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "5":
+          type: button
+          style:
+            text: +30s
+            textExpression: false
+            size: "24"
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 8387711
+            bgcolor: 0
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: m26IYbURgNLk-K03lNA8r
+                    definitionId: add_time
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      amount:
+                        value: 30s
+                        isExpression: false
+                    upgradeIndex: -1
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+      "3":
+        "1":
+          type: button
+          style:
+            text: MSG 1\n5 MIN
+            textExpression: false
+            size: "14"
+            png64: null
+            alignment: center:center
+            pngalignment: center:top
+            color: 16711680
+            bgcolor: 102
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: fRLolXc4hjO9VUfJx0DR8
+                    definitionId: show_or_hide_message
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 1
+                        isExpression: false
+                    upgradeIndex: -1
+                  - type: action
+                    id: VnseDrCuGki5xHCLiuNHq
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "400"
+                    disabled: true
+                    children: {}
+                  - type: action
+                    id: YSWtf2poQWoaqgtpiWWSG
+                    definitionId: aux
+                    connectionId: _ignore
+                    options:
+                      aux:
+                        isExpression: false
+                        value: 4
+                      input:
+                        isExpression: false
+                        value: 2
+                    disabled: true
+                  - type: action
+                    id: UXrGewqhA-eFol7u_eWbv
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "5000"
+                    disabled: true
+                    children: {}
+                  - type: action
+                    id: k9MoYV15_Si2x-WVuDJLl
+                    definitionId: aux
+                    connectionId: _ignore
+                    options:
+                      aux:
+                        isExpression: false
+                        value: 4
+                      input:
+                        isExpression: false
+                        value: 6001
+                    disabled: true
+                  - type: action
+                    id: IOfz6NEH_Q8-InoY4Y934
+                    definitionId: show_or_hide_message
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        isExpression: false
+                        value: 1
+                    disabled: true
+                    upgradeIndex: -1
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "2":
+          type: button
+          style:
+            text: MSG 2\n2 MIN
+            textExpression: false
+            size: "14"
+            png64: null
+            alignment: center:center
+            pngalignment: center:top
+            color: 16711680
+            bgcolor: 102
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: Vc2_Zl7vQ2FXSO35BRe2c
+                    definitionId: show_or_hide_message
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 2
+                        isExpression: false
+                    upgradeIndex: -1
+                  - type: action
+                    id: gd7BcQ2yOH6AMp5d3ITn3
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "400"
+                    disabled: true
+                    children: {}
+                  - type: action
+                    id: OS_FhIQaFKRBfVQBMqdJZ
+                    definitionId: aux
+                    connectionId: _ignore
+                    options:
+                      aux:
+                        isExpression: false
+                        value: 4
+                      input:
+                        isExpression: false
+                        value: 2
+                    disabled: true
+                  - type: action
+                    id: AF0wgLqfPzcaDhq07q9OL
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "5000"
+                    disabled: true
+                    children: {}
+                  - type: action
+                    id: 01c85POcHylp3lvDkeA4f
+                    definitionId: aux
+                    connectionId: _ignore
+                    options:
+                      aux:
+                        isExpression: false
+                        value: 4
+                      input:
+                        isExpression: false
+                        value: 6001
+                    disabled: true
+                  - type: action
+                    id: iD5sYWGQX5gG7mrqadhOL
+                    definitionId: show_or_hide_message
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        isExpression: false
+                        value: 2
+                    disabled: true
+                    upgradeIndex: -1
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "3":
+          type: button
+          style:
+            text: MSG 3\n30 SEC
+            textExpression: false
+            size: "14"
+            png64: null
+            alignment: center:center
+            pngalignment: center:top
+            color: 16711680
+            bgcolor: 102
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: 9x-D007wF3jLQZqTcFFGd
+                    definitionId: show_or_hide_message
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 3
+                        isExpression: false
+                    upgradeIndex: -1
+                  - type: action
+                    id: qmaYaQoFUkAAjHbMxTsOS
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "4000"
+                    disabled: true
+                    children: {}
+                  - type: action
+                    id: oLAYdYm4to_m0vqJ56yAB
+                    definitionId: aux
+                    connectionId: _ignore
+                    options:
+                      aux:
+                        isExpression: false
+                        value: 4
+                      input:
+                        isExpression: false
+                        value: 2
+                    disabled: true
+                  - type: action
+                    id: jgyCRJ_y5AnAQfiXUOlZA
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "5000"
+                    disabled: true
+                    children: {}
+                  - type: action
+                    id: 0LJKSwFdnJBFQHLQOSow8
+                    definitionId: aux
+                    connectionId: _ignore
+                    options:
+                      aux:
+                        isExpression: false
+                        value: 4
+                      input:
+                        isExpression: false
+                        value: 6001
+                    disabled: true
+                  - type: action
+                    id: A2bVoNqfzlWNw8g7xcuWv
+                    definitionId: show_or_hide_message
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        isExpression: false
+                        value: 2
+                    disabled: true
+                    upgradeIndex: -1
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "4":
+          type: button
+          style:
+            text: MSG 4
+            textExpression: false
+            size: "14"
+            png64: null
+            alignment: center:center
+            pngalignment: center:top
+            color: 16711680
+            bgcolor: 102
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: RG1JpnOgv_RV2ruC8pyrs
+                    definitionId: aux
+                    connectionId: _ignore
+                    options:
+                      aux:
+                        isExpression: false
+                        value: 4
+                      input:
+                        isExpression: false
+                        value: 2
+                    disabled: true
+                  - type: action
+                    id: oBsCu5xnmuXWH9sF9Pp52
+                    definitionId: show_or_hide_message
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        value: 4
+                        isExpression: false
+                    upgradeIndex: -1
+                  - type: action
+                    id: JqCT5xG4Bs_sfhwjL9oOM
+                    definitionId: wait
+                    connectionId: internal
+                    options:
+                      time:
+                        isExpression: false
+                        value: "10000"
+                    disabled: true
+                    children: {}
+                  - type: action
+                    id: 0tNOvo6z-l04zB3GxrZnX
+                    definitionId: aux
+                    connectionId: _ignore
+                    options:
+                      aux:
+                        isExpression: false
+                        value: 4
+                      input:
+                        isExpression: false
+                        value: 6001
+                    disabled: true
+                  - type: action
+                    id: RGomZnltG-uR8li2damUX
+                    definitionId: show_or_hide_message
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      index:
+                        isExpression: false
+                        value: 2
+                    disabled: true
+                    upgradeIndex: -1
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+        "5":
+          type: button
+          style:
+            text: -30s
+            textExpression: false
+            size: "24"
+            png64: null
+            alignment: center:center
+            pngalignment: center:center
+            color: 16754342
+            bgcolor: 0
+            show_topbar: default
+          options:
+            stepProgression: auto
+            stepExpression: ""
+            rotaryActions: false
+          feedbacks: []
+          steps:
+            "0":
+              action_sets:
+                down:
+                  - type: action
+                    id: kv8Q-J3_U9ejisOPo7AKp
+                    definitionId: subtract_time
+                    connectionId: vyABJOP3eD0ACDiiHSnS1
+                    options:
+                      amount:
+                        value: 30s
+                        isExpression: false
+                    upgradeIndex: -1
+                up: []
+              options:
+                runWhileHeld: []
+          localVariables: []
+    gridSize: *a1
+triggers: {}
+triggerCollections: []
+custom_variables:
+  Timer1:
+    description: Timer 1 Title
+    defaultValue: "Olivier & Caitlyn "
+    persistCurrentValue: true
+    sortOrder: 0
+  Timer2:
+    description: Timer 2 Title
+    defaultValue: Ads Lauch
+    persistCurrentValue: true
+    sortOrder: 1
+  Timer3:
+    description: Timer 3 Title
+    defaultValue: Ai Corner / Hackathon
+    persistCurrentValue: true
+    sortOrder: 2
+  Timer4:
+    description: Timer 4 Title
+    defaultValue: "Retailer Interview "
+    persistCurrentValue: true
+    sortOrder: 3
+  Timer5:
+    description: Timer 5 Title
+    defaultValue: Time added
+    persistCurrentValue: true
+    sortOrder: 4
+  Timer6:
+    description: Timer 6 Title
+    defaultValue: Time added
+    persistCurrentValue: true
+    sortOrder: 5
+  Timer7:
+    description: Timer 7 Title
+    defaultValue: Time added
+    persistCurrentValue: true
+    sortOrder: 6
+  Timer8:
+    description: Timer 8 Title
+    defaultValue: Time added
+    persistCurrentValue: true
+    sortOrder: 7
+  Timer9:
+    description: Timer 9 Title
+    defaultValue: Time added
+    persistCurrentValue: true
+    sortOrder: 8
+  Timer10:
+    description: Timer 10 title
+    defaultValue: Time added
+    persistCurrentValue: true
+    sortOrder: 9
+  meetingID:
+    description: "Meeting ID "
+    defaultValue: ""
+    persistCurrentValue: true
+    sortOrder: 10
+  meetingPasscode:
+    description: Meeting Passcode
+    defaultValue: ""
+    persistCurrentValue: true
+    sortOrder: 11
+  Slides:
+    description: A custom variable
+    defaultValue: ""
+    persistCurrentValue: true
+    sortOrder: 13
+  Speaker1:
+    description: Speaker 2
+    defaultValue: ""
+    persistCurrentValue: true
+    sortOrder: 14
+  Speaker2:
+    description: Speaker 3
+    defaultValue: ""
+    persistCurrentValue: true
+    sortOrder: 15
+  Speaker3:
+    description: Speaker 4
+    defaultValue: ""
+    persistCurrentValue: true
+    sortOrder: 16
+  Speaker0:
+    description: "London All Hands Zoom Room "
+    defaultValue: ""
+    persistCurrentValue: true
+    sortOrder: 12
+customVariablesCollections: []
+expressionVariables: {}
+expressionVariablesCollections: []
+instances:
+  vyABJOP3eD0ACDiiHSnS1:
+    moduleInstanceType: connection
+    moduleId: stagetimerio-api
+    moduleVersionId: 2.5.0
+    updatePolicy: stable
+    sortOrder: 3
+    label: stagetimer
+    isFirstInit: false
+    config:
+      roomId: E5KJ2Y79
+      apiKey: 6b60edb6ec199a84a97d92aa998d954d
+      apiUrl: https://api.stagetimer.io/v1/
+    secrets: {}
+    lastUpgradeIndex: -1
+    enabled: true
+  ZNPCF_su82Whtd8PxRjVQ:
+    moduleInstanceType: connection
+    moduleId: gslide-opener
+    moduleVersionId: 1.7.0
+    updatePolicy: stable
+    sortOrder: 4
+    label: gslide-opener
+    isFirstInit: false
+    config:
+      host: 127.0.0.1
+      port: 9595
+    secrets: {}
+    lastUpgradeIndex: -1
+    enabled: true
+  jWnE39_hYM2ysLJw5afi1:
+    moduleInstanceType: connection
+    moduleId: zoom-cavzrc
+    moduleVersionId: 0.5.2
+    updatePolicy: stable
+    sortOrder: 6
+    label: cavzrc_2
+    isFirstInit: false
+    config:
+      host: 127.0.0.1
+      tx_port: 1236
+      rx_port: 9090
+      oscOutputHeader: /roomosc
+      pollInterval: 10000
+    secrets: {}
+    lastUpgradeIndex: -1
+    enabled: true
+  j9tfVtJKrj23fIDesN59j:
+    moduleInstanceType: connection
+    moduleId: zoom-osc-iso
+    moduleVersionId: 4.11.0
+    updatePolicy: stable
+    sortOrder: 7
+    label: Zoom_OSC___ISO_module
+    isFirstInit: false
+    config:
+      host: 127.0.0.1
+      tx_port: 9091
+      rx_port: 1234
+      selectionMethod: 1
+      numberOfGroups: 3
+      pulling: 1000
+      pollEngineState: true
+      pollAudioLevels: true
+      pollOutputRouting: true
+      pollAudioRouting: true
+      feedbackImagesWithIcons: 0
+      enableSocialStream: false
+      socialStreamId: ""
+      socialStreamQuestionPrefix: ""
+      socialStreamChatTypeToSend:
+        - 0
+        - 1
+        - 2
+      enableVariablesForEachUser: true
+      enableVariablesForParticipants: true
+      enableActionPresetAndFeedbackSync: true
+      version: 0
+    secrets: {}
+    lastUpgradeIndex: 5
+    enabled: true
+connectionCollections: []
+surfaces: {}
+surfaceGroups: {}
+surfacesRemote: {}
+surfaceInstances:
+  p275EdksPoV8CqcXNLNUp:
+    moduleInstanceType: surface
+    moduleId: elgato-stream-deck
+    moduleVersionId: builtin
+    updatePolicy: stable
+    sortOrder: 1
+    label: elgato-stream-deck
+    isFirstInit: true
+    config: {}
+    secrets: {}
+    lastUpgradeIndex: -1
+    enabled: true
+  SwNuQXKyaeh4Pa0V-iKeg:
+    moduleInstanceType: surface
+    moduleId: xkeys
+    moduleVersionId: builtin
+    updatePolicy: stable
+    sortOrder: 2
+    label: xkeys
+    isFirstInit: true
+    config: {}
+    secrets: {}
+    lastUpgradeIndex: -1
+    enabled: true
+surfaceInstanceCollections: []
