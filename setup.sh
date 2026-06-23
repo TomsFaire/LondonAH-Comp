@@ -186,19 +186,40 @@ if [[ ! -d "/Applications/ZoomOSC.app" ]]; then
     curl -L --progress-bar \
         "https://drive.usercontent.google.com/download?id=${ZOOMOSC_GDRIVE_ID}&export=download&confirm=t" \
         -o "$ZOOMOSC_DMG"
-    warn "Mounting installer..."
-    hdiutil attach "$ZOOMOSC_DMG" -quiet -nobrowse
-    MOUNT=$(hdiutil info | grep -i "zoomosc" | grep "Volumes" | awk '{print $NF}' | head -1)
-    PKG=$(find "$MOUNT" -name "*.pkg" -maxdepth 2 | head -1)
-    APP=$(find "$MOUNT" -name "*.app" -maxdepth 2 | head -1)
-    if [[ -n "$PKG" ]]; then
-        sudo installer -pkg "$PKG" -target /
-    elif [[ -n "$APP" ]]; then
-        cp -r "$APP" /Applications/
+
+    # Verify we got an actual DMG, not a Google HTML warning page
+    FILETYPE=$(file -b "$ZOOMOSC_DMG")
+    if echo "$FILETYPE" | grep -qi "html\|text"; then
+        err "Google Drive returned an HTML page instead of the DMG."
+        err "This usually means the file needs manual download."
+        err "Download ZoomOSC from https://drive.google.com/file/d/${ZOOMOSC_GDRIVE_ID}/view"
+        err "Save it to /tmp/ZoomOSC-Installer.dmg then press Enter."
+        rm -f "$ZOOMOSC_DMG"
+        pause
     fi
-    hdiutil detach "$MOUNT" -quiet
-    rm -f "$ZOOMOSC_DMG"
-    ok "ZoomOSC installed"
+
+    # Clear quarantine so macOS lets hdiutil mount it
+    xattr -dr com.apple.quarantine "$ZOOMOSC_DMG" 2>/dev/null || true
+
+    warn "Mounting installer..."
+    if ! hdiutil attach "$ZOOMOSC_DMG" -nobrowse 2>&1; then
+        err "Failed to mount ZoomOSC DMG. File type: $FILETYPE"
+        err "Download manually from https://drive.google.com/file/d/${ZOOMOSC_GDRIVE_ID}/view and install ZoomOSC, then press Enter."
+        rm -f "$ZOOMOSC_DMG"
+        pause
+    else
+        MOUNT=$(hdiutil info | grep -i "zoomosc" | grep "Volumes" | awk '{print $NF}' | head -1)
+        PKG=$(find "$MOUNT" -name "*.pkg" -maxdepth 2 | head -1)
+        APP=$(find "$MOUNT" -name "*.app" -maxdepth 2 | head -1)
+        if [[ -n "$PKG" ]]; then
+            sudo installer -pkg "$PKG" -target /
+        elif [[ -n "$APP" ]]; then
+            cp -r "$APP" /Applications/
+        fi
+        hdiutil detach "$MOUNT" -quiet || true
+        rm -f "$ZOOMOSC_DMG"
+        ok "ZoomOSC installed"
+    fi
 else
     ok "ZoomOSC already installed"
 fi
