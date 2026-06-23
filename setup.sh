@@ -87,8 +87,8 @@ print(mac[0]['url'])
         fi
         warn "Downloading Companion from $COMPANION_URL ..."
         curl -L --progress-bar "$COMPANION_URL" -o /tmp/Companion.dmg
-        hdiutil attach /tmp/Companion.dmg -quiet -nobrowse
-        MOUNT=$(hdiutil info | grep -i "companion" | grep "Volumes" | awk '{print $NF}' | head -1)
+        COMPANION_MOUNT_OUTPUT=$(hdiutil attach /tmp/Companion.dmg -nobrowse 2>&1)
+        MOUNT=$(echo "$COMPANION_MOUNT_OUTPUT" | awk -F'\t' '/\/Volumes\//{print $NF}' | head -1)
         cp -r "$MOUNT/Companion.app" /Applications/
         hdiutil detach "$MOUNT" -quiet
         rm -f /tmp/Companion.dmg
@@ -163,8 +163,8 @@ if [[ ! -d "/Applications/ZoomRoomsCustomAVController.app" ]] && \
     curl -L --progress-bar "https://zoom.us/client/latest/ZoomRoomsCustomAVController.dmg" \
         -o "$CAVZRC_DMG"
     warn "Mounting installer..."
-    hdiutil attach "$CAVZRC_DMG" -quiet -nobrowse
-    MOUNT=$(hdiutil info | grep "ZoomRooms" | grep "Volumes" | awk '{print $NF}')
+    CAVZRC_MOUNT_OUTPUT=$(hdiutil attach "$CAVZRC_DMG" -nobrowse 2>&1)
+    MOUNT=$(echo "$CAVZRC_MOUNT_OUTPUT" | awk -F'\t' '/\/Volumes\//{print $NF}' | head -1)
     APP=$(find "$MOUNT" -name "*.app" -maxdepth 2 | head -1)
     cp -r "$APP" /Applications/
     hdiutil detach "$MOUNT" -quiet
@@ -204,13 +204,14 @@ if [[ ! -d "/Applications/ZoomOSC.app" ]]; then
     xattr -dr com.apple.quarantine "$ZOOMOSC_DMG" 2>/dev/null || true
 
     warn "Mounting installer..."
-    if ! hdiutil attach "$ZOOMOSC_DMG" -nobrowse 2>&1; then
-        err "Failed to mount ZoomOSC DMG. File type: $FILETYPE"
+    MOUNT_OUTPUT=$(hdiutil attach "$ZOOMOSC_DMG" -nobrowse 2>&1)
+    MOUNT=$(echo "$MOUNT_OUTPUT" | awk -F'\t' '/\/Volumes\//{print $NF}' | head -1)
+    if [[ -z "$MOUNT" ]]; then
+        err "Failed to mount ZoomOSC DMG."
         err "Download manually from https://drive.google.com/file/d/${ZOOMOSC_GDRIVE_ID}/view and install ZoomOSC, then press Enter."
         rm -f "$ZOOMOSC_DMG"
         pause
     else
-        MOUNT=$(hdiutil info | grep -i "zoomosc" | grep "Volumes" | awk '{print $NF}' | head -1)
         PKG=$(find "$MOUNT" -name "*.pkg" -maxdepth 2 | head -1)
         APP=$(find "$MOUNT" -name "*.app" -maxdepth 2 | head -1)
         if [[ -n "$PKG" ]]; then
