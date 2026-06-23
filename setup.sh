@@ -12,6 +12,9 @@ set -e
 set -u
 set -o pipefail
 
+# Clean up any temp files on exit (handles crashes and early exits)
+trap 'rm -rf /tmp/Companion.dmg /tmp/gslide-opener.zip /tmp/gslide-opener-extracted /tmp/ZoomRoomsCustomAVController.dmg /tmp/ZoomOSC-Installer.dmg /tmp/ZoomOSC-download.zip /tmp/zoomosc-zip 2>/dev/null' EXIT
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/LondonCompanion.companionconfig"
 COMPANION_API="http://localhost:8000"
