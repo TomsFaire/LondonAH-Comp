@@ -147,6 +147,12 @@ else
     ok "CavZRC already installed"
 fi
 
+# Clear Gatekeeper quarantine
+warn "Clearing Gatekeeper quarantine on CavZRC..."
+CAVZRC_APP=$(find /Applications -maxdepth 1 -name "*ZoomRooms*AV*" -o -name "*CavZRC*" 2>/dev/null | head -1)
+[[ -n "$CAVZRC_APP" ]] && xattr -dr com.apple.quarantine "$CAVZRC_APP" 2>/dev/null || true
+ok "Gatekeeper cleared"
+
 # ── 5. ZoomOSC ────────────────────────────────────────────────────────────────
 step "ZoomOSC ISO"
 ZOOMOSC_ZIP="/tmp/ZoomOSC.zip"
@@ -197,13 +203,21 @@ echo "  Follow these steps in the browser that's about to open:"
 echo
 echo "    1. Click  [Modules]  in the left sidebar"
 echo "    2. Click  [Import module package]"
-echo "    3. Select this file:"
-echo -e "       ${BOLD}$MODULE_FILE${NC}"
-echo "    4. Confirm the import"
+echo "    3. Import each of these files one at a time:"
+echo -e "       ${BOLD}$MODULE_FILE${NC}  (Google Slides Opener)"
+CAVZRC_MODULE=$(find "$SCRIPT_DIR" -name "companion-module-cavzrc*.tgz" -maxdepth 1 | head -1)
+if [[ -n "$CAVZRC_MODULE" ]]; then
+    echo -e "       ${BOLD}$CAVZRC_MODULE${NC}  (CavZRC)"
+else
+    warn "companion-module-cavzrc .tgz not found next to this script."
+    warn "Build it from https://github.com/TomsFaire/companion-module-cavzrc and add it to this folder,"
+    warn "or install zoom-cavzrc from the Companion module store instead."
+fi
+echo "    4. Confirm each import"
 echo
 open "http://localhost:8000/modules"
 echo
-echo "  Module imported?"
+echo "  All modules imported?"
 pause
 
 # ── 8. Import the config ──────────────────────────────────────────────────────
