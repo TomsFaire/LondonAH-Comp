@@ -148,14 +148,26 @@ else
 fi
 
 # ── 5. ZoomOSC ────────────────────────────────────────────────────────────────
-step "ZoomOSC ISO  ⚠ manual install required"
-echo
-echo "  ZoomOSC ISO is a licensed app from Liminal and must be installed manually."
-echo
-echo "  1. Download ZoomOSC ISO from https://www.liminalet.com"
-echo "  2. Install and launch it"
-echo "  3. Sign into your Zoom account inside ZoomOSC"
-echo
+step "ZoomOSC ISO"
+ZOOMOSC_ZIP="/tmp/ZoomOSC.zip"
+ZOOMOSC_URL="https://filedn.com/lJhb55s9GTLpJecFnm56CRp/ZoomOSC/4.6.0/ZoomOSC%20v4.6.1%20Download.zip"
+if [[ ! -d "/Applications/ZoomOSC.app" ]]; then
+    warn "Downloading ZoomOSC ISO v4.6.1..."
+    curl -L --progress-bar "$ZOOMOSC_URL" -o "$ZOOMOSC_ZIP"
+    warn "Extracting..."
+    unzip -q "$ZOOMOSC_ZIP" -d /tmp/zoomosc-extracted
+    APP_PATH=$(find /tmp/zoomosc-extracted -name "*.app" -maxdepth 3 | head -1)
+    if [[ -n "$APP_PATH" ]]; then
+        cp -r "$APP_PATH" /Applications/
+        ok "ZoomOSC installed"
+    else
+        warn "Could not find .app in ZIP — install ZoomOSC manually from https://www.liminalet.com/zoomosc"
+    fi
+    rm -rf "$ZOOMOSC_ZIP" /tmp/zoomosc-extracted
+else
+    ok "ZoomOSC already installed"
+fi
+warn "Launch ZoomOSC and sign into your Zoom account before continuing."
 pause
 
 # ── 6. Launch Companion ───────────────────────────────────────────────────────
@@ -166,7 +178,7 @@ fi
 
 echo -n "  Waiting for Companion to start"
 for i in $(seq 1 30); do
-    if curl -sf "$COMPANION_API/api/version" &>/dev/null 2>&1; then
+    if curl -sf "$COMPANION_API/" &>/dev/null 2>&1; then
         echo; ok "Companion is ready"; break
     fi
     echo -n "."; sleep 2
@@ -206,7 +218,7 @@ echo -e "       ${BOLD}$CONFIG_FILE${NC}"
 echo "    3. Click  [Import full config]"
 echo "    4. Companion will restart — wait for it to come back up"
 echo
-open "http://localhost:8000/settings/import-export"
+open "http://localhost:8000/import-export"
 echo
 echo "  Config imported and Companion restarted?"
 pause
@@ -215,7 +227,7 @@ pause
 echo -n "  Waiting for Companion to restart"
 sleep 5
 for i in $(seq 1 20); do
-    if curl -sf "$COMPANION_API/api/version" &>/dev/null 2>&1; then
+    if curl -sf "$COMPANION_API/" &>/dev/null 2>&1; then
         echo; ok "Companion back online"; break
     fi
     echo -n "."; sleep 2
