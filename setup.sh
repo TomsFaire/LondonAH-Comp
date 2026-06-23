@@ -65,7 +65,7 @@ ok "Homebrew $(brew --version | head -1)"
 step "Bitfocus Companion"
 if [[ ! -d "/Applications/Companion.app" ]]; then
     warn "Not found — trying Homebrew cask..."
-    if brew install --cask companion 2>&1; then
+    if brew reinstall --cask companion 2>&1; then
         ok "Companion installed via Homebrew"
     else
         warn "Homebrew install failed — falling back to direct download..."
