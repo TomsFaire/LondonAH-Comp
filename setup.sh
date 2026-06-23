@@ -183,30 +183,21 @@ ok "Gatekeeper cleared"
 # ── 5. ZoomOSC ────────────────────────────────────────────────────────────────
 step "ZoomOSC ISO"
 ZOOMOSC_DMG="/tmp/ZoomOSC-Installer.dmg"
-ZOOMOSC_GDRIVE_ID="14WLWXHqJiYcgPpst5PbS_cS9-brTIbg3"
+ZOOMOSC_GDRIVE_ID="1-IuWmsTWFmBkJ97aqRTGoD2tIZPFw8Xe"
 if [[ ! -d "/Applications/ZoomOSC.app" ]]; then
     warn "Downloading ZoomOSC installer from Google Drive..."
     curl -L --progress-bar \
         "https://drive.usercontent.google.com/download?id=${ZOOMOSC_GDRIVE_ID}&export=download&confirm=t" \
         -o "$ZOOMOSC_DMG"
 
-    # Check what we actually got
+    # Verify we got an actual DMG
     FILETYPE=$(file -b "$ZOOMOSC_DMG")
-    if echo "$FILETYPE" | grep -qi "html\|text"; then
-        err "Google Drive returned an HTML page instead of the file."
-        err "Download ZoomOSC from https://drive.google.com/file/d/${ZOOMOSC_GDRIVE_ID}/view"
-        err "Save the DMG to /tmp/ZoomOSC-Installer.dmg then press Enter."
+    if ! echo "$FILETYPE" | grep -qi "zlib\|x86\|boot\|data\|image"; then
+        err "Download did not produce a valid DMG (got: $FILETYPE)."
+        err "Download the DMG manually from https://drive.google.com/file/d/${ZOOMOSC_GDRIVE_ID}/view"
+        err "Save it to /tmp/ZoomOSC-Installer.dmg then press Enter."
         rm -f "$ZOOMOSC_DMG"
         pause
-    elif echo "$FILETYPE" | grep -qi "zip\|Zip"; then
-        warn "Got a ZIP — extracting DMG..."
-        ZOOMOSC_ZIP="/tmp/ZoomOSC-download.zip"
-        mv "$ZOOMOSC_DMG" "$ZOOMOSC_ZIP"
-        rm -rf /tmp/zoomosc-zip && mkdir -p /tmp/zoomosc-zip
-        unzip -q "$ZOOMOSC_ZIP" -d /tmp/zoomosc-zip
-        EXTRACTED_DMG=$(find /tmp/zoomosc-zip -name "*.dmg" | head -1)
-        mv "$EXTRACTED_DMG" "$ZOOMOSC_DMG"
-        rm -rf "$ZOOMOSC_ZIP" /tmp/zoomosc-zip
     fi
 
     # Clear quarantine so macOS lets hdiutil mount it
