@@ -1,11 +1,16 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────────────────────────
 #  London All Hands — Companion Setup Script
 #  Run once on each new operator machine.
 #  Usage:  bash setup.sh
 # ─────────────────────────────────────────────────────────────────────────────
 
-set -euo pipefail
+# Re-exec with bash if invoked via sh
+[ -z "${BASH_VERSION:-}" ] && exec bash "$0" "$@"
+
+set -e
+set -u
+set -o pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/LondonCompanion.companionconfig"
