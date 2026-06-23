@@ -64,9 +64,33 @@ ok "Homebrew $(brew --version | head -1)"
 # ── 2. Bitfocus Companion ─────────────────────────────────────────────────────
 step "Bitfocus Companion"
 if [[ ! -d "/Applications/Companion.app" ]]; then
-    warn "Not found — installing via Homebrew cask..."
-    brew install --cask companion
-    ok "Companion installed"
+    warn "Not found — trying Homebrew cask..."
+    if brew install --cask companion 2>&1; then
+        ok "Companion installed via Homebrew"
+    else
+        warn "Homebrew install failed — falling back to direct download..."
+        COMPANION_ARCH=$(uname -m | sed 's/x86_64/x64/;s/arm64/arm64/')
+        COMPANION_JSON=$(curl -sf "https://api.bitfocus.io/v1/product/companion/packages?branch=stable&limit=10")
+        COMPANION_URL=$(echo "$COMPANION_JSON" | python3 -c "
+import json,sys
+pkgs = json.load(sys.stdin)['packages']
+mac = [p for p in pkgs if 'mac-$COMPANION_ARCH' in p.get('target','') or 'mac' in p.get('target','')]
+print(mac[0]['url'])
+" 2>/dev/null)
+        if [[ -z "$COMPANION_URL" ]]; then
+            err "Could not resolve Companion download URL."
+            err "Download manually from https://bitfocus.io/companion, install it, then re-run."
+            exit 1
+        fi
+        warn "Downloading Companion from $COMPANION_URL ..."
+        curl -L --progress-bar "$COMPANION_URL" -o /tmp/Companion.dmg
+        hdiutil attach /tmp/Companion.dmg -quiet -nobrowse
+        MOUNT=$(hdiutil info | grep -i "companion" | grep "Volumes" | awk '{print $NF}' | head -1)
+        cp -r "$MOUNT/Companion.app" /Applications/
+        hdiutil detach "$MOUNT" -quiet
+        rm -f /tmp/Companion.dmg
+        ok "Companion installed via direct download"
+    fi
 else
     ok "Companion already installed"
 fi
