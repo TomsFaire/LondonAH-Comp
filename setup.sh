@@ -14,7 +14,7 @@ set -o pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/LondonCompanion.companionconfig"
-COMPANION_API="http://localhost:8888"
+COMPANION_API="http://localhost:8000"
 GSC_REPO="TomsFaire/Google-Slides-Controller"
 
 # ── Colors ────────────────────────────────────────────────────────────────────
@@ -127,20 +127,19 @@ else
 fi
 
 # ── 4. ZoomOSC ───────────────────────────────────────────────────────────────
-step "ZoomOSC ISO + CavZRC (licensed via Zoom App Marketplace)"
+step "ZoomOSC ISO + CavZRC"
 echo
-echo "  ZoomOSC and CavZRC are licensed through the Zoom App Marketplace."
-echo "  Opening both Marketplace pages now — install from your Zoom account:"
+echo "  These apps are licensed via Zoom Marketplace but downloaded from Liminal."
 echo
-echo "    • ZoomOSC ISO:"
-echo "      https://marketplace.zoom.us/apps/VG_p3Bb_TwWe_bgZmPUaXw"
-echo "    • Zoom Rooms Custom AV Controller (CavZRC):"
-echo "      https://marketplace.zoom.us/apps/hbAzPPSyQG-x7t4KVQQ4Sg"
+echo "  Step 1 — authorize on Zoom Marketplace (if not already done):"
+echo "    • ZoomOSC ISO:  https://marketplace.zoom.us/apps/VG_p3Bb_TwWe_bgZmPUaXw"
+echo "    • CavZRC:       https://marketplace.zoom.us/apps/hbAzPPSyQG-x7t4KVQQ4Sg"
 echo
-open "https://marketplace.zoom.us/apps/VG_p3Bb_TwWe_bgZmPUaXw"
-sleep 1
-open "https://marketplace.zoom.us/apps/hbAzPPSyQG-x7t4KVQQ4Sg"
-echo "  Install both apps, sign in, then come back here."
+echo "  Step 2 — download and install both apps from Liminal (opening now):"
+echo "    https://www.liminalet.com/downloads"
+echo
+open "https://www.liminalet.com/downloads"
+echo "  Download ZoomOSC ISO and CavZRC, install both, then come back here."
 echo
 pause
 
@@ -175,7 +174,7 @@ echo "    3. Select this file:"
 echo -e "       ${BOLD}$MODULE_FILE${NC}"
 echo "    4. Confirm the import"
 echo
-open "http://localhost:8888/modules"
+open "http://localhost:8000/modules"
 echo
 echo "  Module imported?"
 pause
@@ -192,7 +191,7 @@ echo -e "       ${BOLD}$CONFIG_FILE${NC}"
 echo "    3. Click  [Import full config]"
 echo "    4. Companion will restart — wait for it to come back up"
 echo
-open "http://localhost:8888/settings/import-export"
+open "http://localhost:8000/settings/import-export"
 echo
 echo "  Config imported and Companion restarted?"
 pause
