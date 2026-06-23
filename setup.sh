@@ -38,9 +38,10 @@ echo -e "${NC}"
 echo "  This script will:"
 echo "   1. Install Homebrew and Bitfocus Companion"
 echo "   2. Download and install Google Slides Opener"
-echo "   3. Open the ZoomOSC download page"
-echo "   4. Import the Companion module + config (2 guided steps)"
-echo "   5. Prompt for show details and push them into Companion"
+echo "   3. Download and install Zoom Rooms Custom AV Controller"
+echo "   4. Pause for you to manually install ZoomOSC ISO (licensed)"
+echo "   5. Import the Companion module + config (2 guided steps)"
+echo "   6. Prompt for show details and push them into Companion"
 echo
 pause
 
@@ -126,26 +127,38 @@ else
     warn "Google Slides Opener may still be starting — verify it's open before the show"
 fi
 
-# ── 4. ZoomOSC ───────────────────────────────────────────────────────────────
-step "ZoomOSC ISO + CavZRC  ⚠ manual install required"
+# ── 4. Zoom Rooms Custom AV Controller (CavZRC) ───────────────────────────────
+step "Zoom Rooms Custom AV Controller (CavZRC)"
+CAVZRC_DMG="/tmp/ZoomRoomsCustomAVController.dmg"
+if [[ ! -d "/Applications/ZoomRoomsCustomAVController.app" ]] && \
+   [[ ! -d "/Applications/Zoom Rooms Custom AV Controller.app" ]]; then
+    warn "Downloading CavZRC..."
+    curl -L --progress-bar "https://zoom.us/client/latest/ZoomRoomsCustomAVController.dmg" \
+        -o "$CAVZRC_DMG"
+    warn "Mounting installer..."
+    hdiutil attach "$CAVZRC_DMG" -quiet -nobrowse
+    MOUNT=$(hdiutil info | grep "ZoomRooms" | grep "Volumes" | awk '{print $NF}')
+    APP=$(find "$MOUNT" -name "*.app" -maxdepth 2 | head -1)
+    cp -r "$APP" /Applications/
+    hdiutil detach "$MOUNT" -quiet
+    rm -f "$CAVZRC_DMG"
+    ok "CavZRC installed"
+else
+    ok "CavZRC already installed"
+fi
+
+# ── 5. ZoomOSC ────────────────────────────────────────────────────────────────
+step "ZoomOSC ISO  ⚠ manual install required"
 echo
-echo "  These are licensed apps — you must download them manually."
+echo "  ZoomOSC ISO is a licensed app from Liminal and must be installed manually."
 echo
-echo "  1. Authorize on Zoom Marketplace (opening both pages now):"
-echo "     • ZoomOSC ISO:  https://marketplace.zoom.us/apps/VG_p3Bb_TwWe_bgZmPUaXw"
-echo "     • CavZRC:       https://marketplace.zoom.us/apps/hbAzPPSyQG-x7t4KVQQ4Sg"
-echo
-open "https://marketplace.zoom.us/apps/VG_p3Bb_TwWe_bgZmPUaXw"
-sleep 1
-open "https://marketplace.zoom.us/apps/hbAzPPSyQG-x7t4KVQQ4Sg"
-echo "  2. After authorizing, download both apps from Liminal's site:"
-echo "     https://www.liminalet.com"
-echo
-echo "  3. Install both .dmg files and launch them before continuing."
+echo "  1. Download ZoomOSC ISO from https://www.liminalet.com"
+echo "  2. Install and launch it"
+echo "  3. Sign into your Zoom account inside ZoomOSC"
 echo
 pause
 
-# ── 5. Launch Companion ───────────────────────────────────────────────────────
+# ── 6. Launch Companion ───────────────────────────────────────────────────────
 step "Launching Companion"
 if ! pgrep -x "Companion" &>/dev/null; then
     open -a "Companion"
@@ -164,7 +177,7 @@ for i in $(seq 1 30); do
     fi
 done
 
-# ── 6. Import the Companion module ────────────────────────────────────────────
+# ── 7. Import the Companion module ────────────────────────────────────────────
 step "Import the Google Slides Opener module into Companion"
 echo
 echo "  We need to install the Google Slides Opener module before the config."
@@ -181,7 +194,7 @@ echo
 echo "  Module imported?"
 pause
 
-# ── 7. Import the config ──────────────────────────────────────────────────────
+# ── 8. Import the config ──────────────────────────────────────────────────────
 step "Import the London AH config"
 echo
 echo "  Now import the full Companion config."
