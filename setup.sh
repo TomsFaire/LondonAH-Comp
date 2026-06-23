@@ -179,21 +179,26 @@ ok "Gatekeeper cleared"
 
 # ── 5. ZoomOSC ────────────────────────────────────────────────────────────────
 step "ZoomOSC ISO"
-ZOOMOSC_ZIP="/tmp/ZoomOSC.zip"
-ZOOMOSC_URL="https://filedn.com/lJhb55s9GTLpJecFnm56CRp/ZoomOSC/4.6.0/ZoomOSC%20v4.6.1%20Download.zip"
+ZOOMOSC_DMG="/tmp/ZoomOSC-Installer.dmg"
+ZOOMOSC_GDRIVE_ID="14WLWXHqJiYcgPpst5PbS_cS9-brTIbg3"
 if [[ ! -d "/Applications/ZoomOSC.app" ]]; then
-    warn "Downloading ZoomOSC ISO v4.6.1..."
-    curl -L --progress-bar "$ZOOMOSC_URL" -o "$ZOOMOSC_ZIP"
-    warn "Extracting..."
-    unzip -q "$ZOOMOSC_ZIP" -d /tmp/zoomosc-extracted
-    APP_PATH=$(find /tmp/zoomosc-extracted -name "*.app" -maxdepth 3 | head -1)
-    if [[ -n "$APP_PATH" ]]; then
-        cp -r "$APP_PATH" /Applications/
-        ok "ZoomOSC installed"
-    else
-        warn "Could not find .app in ZIP — install ZoomOSC manually from https://www.liminalet.com/zoomosc"
+    warn "Downloading ZoomOSC installer from Google Drive..."
+    curl -L --progress-bar \
+        "https://drive.usercontent.google.com/download?id=${ZOOMOSC_GDRIVE_ID}&export=download&confirm=t" \
+        -o "$ZOOMOSC_DMG"
+    warn "Mounting installer..."
+    hdiutil attach "$ZOOMOSC_DMG" -quiet -nobrowse
+    MOUNT=$(hdiutil info | grep -i "zoomosc" | grep "Volumes" | awk '{print $NF}' | head -1)
+    PKG=$(find "$MOUNT" -name "*.pkg" -maxdepth 2 | head -1)
+    APP=$(find "$MOUNT" -name "*.app" -maxdepth 2 | head -1)
+    if [[ -n "$PKG" ]]; then
+        sudo installer -pkg "$PKG" -target /
+    elif [[ -n "$APP" ]]; then
+        cp -r "$APP" /Applications/
     fi
-    rm -rf "$ZOOMOSC_ZIP" /tmp/zoomosc-extracted
+    hdiutil detach "$MOUNT" -quiet
+    rm -f "$ZOOMOSC_DMG"
+    ok "ZoomOSC installed"
 else
     ok "ZoomOSC already installed"
 fi
