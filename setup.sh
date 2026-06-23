@@ -31,6 +31,18 @@ err()    { echo -e "${RED}  ✗ $1${NC}"; }
 prompt() { read -rp "$(echo -e "  ${BOLD}→ $1:${NC} ")" "$2"; }
 pause()  { read -rp "$(echo -e "  ${BOLD}Press Enter to continue...${NC}")"; }
 
+# check_port PORT NAME — warns if UDP/TCP port is already in use
+check_port() {
+    local port="$1" name="$2"
+    if lsof -iTCP:"$port" -sTCP:LISTEN -t &>/dev/null 2>&1 || \
+       lsof -iUDP:"$port" -t &>/dev/null 2>&1; then
+        warn "Port $port ($name) appears to be in use. Another process may be occupying it."
+        echo -e "  ${YELLOW}  Run: lsof -i :$port${NC}  to identify and quit the conflicting app."
+    else
+        ok "Port $port ($name) is available"
+    fi
+}
+
 # ── Preflight ─────────────────────────────────────────────────────────────────
 clear
 echo -e "${BOLD}"
@@ -180,6 +192,32 @@ CAVZRC_APP=$(find /Applications -maxdepth 1 -name "*ZoomRooms*AV*" -o -name "*Ca
 [[ -n "$CAVZRC_APP" ]] && xattr -dr com.apple.quarantine "$CAVZRC_APP" 2>/dev/null || true
 ok "Gatekeeper cleared"
 
+# Launch CavZRC and guide OSC config
+step "Configuring CavZRC OSC Ports"
+echo "  Checking required ports..."
+check_port 9090 "CavZRC TX"
+check_port 1236 "CavZRC RX"
+echo
+warn "Launching CavZRC..."
+open -a "ZoomRoomsCustomAVController" 2>/dev/null || open -a "Zoom Rooms Custom AV Controller" 2>/dev/null || true
+sleep 3
+echo
+echo -e "  ${BOLD}Configure CavZRC OSC settings:${NC}"
+echo "  ┌─────────────────────────────────────────────────┐"
+echo "  │  In CavZRC → OSC Settings (top-right button)   │"
+echo "  │                                                  │"
+echo "  │  Enable OSC for network control  →  ON          │"
+echo "  │  Transmission IP                 →  127.0.0.1   │"
+echo "  │  Transmission Port               →  9090         │"
+echo "  │  Receiving Port                  →  1236         │"
+echo "  │  OSC Output Header               →  /roomosc     │"
+echo "  │  OSC Network Interface           →  All          │"
+echo "  │  Use IP Allow List               →  OFF          │"
+echo "  └─────────────────────────────────────────────────┘"
+echo "  Sign in with your Zoom account, pair your Zoom Room, then click OK."
+echo
+pause
+
 # ── 5. ZoomOSC ────────────────────────────────────────────────────────────────
 step "ZoomOSC ISO"
 ZOOMOSC_DMG="/tmp/ZoomOSC-Installer.dmg"
@@ -226,7 +264,29 @@ if [[ ! -d "/Applications/ZoomOSC.app" ]]; then
 else
     ok "ZoomOSC already installed"
 fi
-warn "Launch ZoomOSC and sign into your Zoom account before continuing."
+step "Configuring ZoomOSC OSC Ports"
+echo "  Checking required ports..."
+check_port 1234 "ZoomOSC TX"
+check_port 9091 "ZoomOSC RX"
+echo
+warn "Launching ZoomOSC..."
+open -a "ZoomOSC" 2>/dev/null || true
+sleep 3
+echo
+echo -e "  ${BOLD}Configure ZoomOSC OSC settings:${NC}"
+echo "  ┌──────────────────────────────────────────────────────┐"
+echo "  │  In ZoomOSC → OSC Settings tab, enter:              │"
+echo "  │                                                       │"
+echo "  │  Transmission IP       →  127.0.0.1                  │"
+echo "  │  Transmission Port     →  1234                        │"
+echo "  │  Receiving Port        →  9091                        │"
+echo "  │  OSC Output Rate       →  Fastest Possible            │"
+echo "  │  Listen to Interface   →  All                         │"
+echo "  │  Subscribe to          →  All                         │"
+echo "  │  Gallery Tracking Mode →  Zoom ID                     │"
+echo "  └──────────────────────────────────────────────────────┘"
+echo "  Sign in with your Zoom account, configure the settings above, then press Go."
+echo
 pause
 
 # ── 6. Launch Companion ───────────────────────────────────────────────────────
