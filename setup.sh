@@ -187,15 +187,22 @@ if [[ ! -d "/Applications/ZoomOSC.app" ]]; then
         "https://drive.usercontent.google.com/download?id=${ZOOMOSC_GDRIVE_ID}&export=download&confirm=t" \
         -o "$ZOOMOSC_DMG"
 
-    # Verify we got an actual DMG, not a Google HTML warning page
+    # Check what we actually got
     FILETYPE=$(file -b "$ZOOMOSC_DMG")
     if echo "$FILETYPE" | grep -qi "html\|text"; then
-        err "Google Drive returned an HTML page instead of the DMG."
-        err "This usually means the file needs manual download."
+        err "Google Drive returned an HTML page instead of the file."
         err "Download ZoomOSC from https://drive.google.com/file/d/${ZOOMOSC_GDRIVE_ID}/view"
-        err "Save it to /tmp/ZoomOSC-Installer.dmg then press Enter."
+        err "Save the DMG to /tmp/ZoomOSC-Installer.dmg then press Enter."
         rm -f "$ZOOMOSC_DMG"
         pause
+    elif echo "$FILETYPE" | grep -qi "zip\|Zip"; then
+        warn "Got a ZIP — extracting DMG..."
+        ZOOMOSC_ZIP="/tmp/ZoomOSC-download.zip"
+        mv "$ZOOMOSC_DMG" "$ZOOMOSC_ZIP"
+        EXTRACTED_DMG=$(unzip -l "$ZOOMOSC_ZIP" | awk '/\.dmg$/{print $NF}' | head -1)
+        unzip -q "$ZOOMOSC_ZIP" "$EXTRACTED_DMG" -d /tmp/zoomosc-zip
+        mv "/tmp/zoomosc-zip/$EXTRACTED_DMG" "$ZOOMOSC_DMG"
+        rm -rf "$ZOOMOSC_ZIP" /tmp/zoomosc-zip
     fi
 
     # Clear quarantine so macOS lets hdiutil mount it
