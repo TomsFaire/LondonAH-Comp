@@ -199,9 +199,10 @@ if [[ ! -d "/Applications/ZoomOSC.app" ]]; then
         warn "Got a ZIP — extracting DMG..."
         ZOOMOSC_ZIP="/tmp/ZoomOSC-download.zip"
         mv "$ZOOMOSC_DMG" "$ZOOMOSC_ZIP"
-        EXTRACTED_DMG=$(unzip -l "$ZOOMOSC_ZIP" | awk '/\.dmg$/{print $NF}' | head -1)
-        unzip -q "$ZOOMOSC_ZIP" "$EXTRACTED_DMG" -d /tmp/zoomosc-zip
-        mv "/tmp/zoomosc-zip/$EXTRACTED_DMG" "$ZOOMOSC_DMG"
+        rm -rf /tmp/zoomosc-zip && mkdir -p /tmp/zoomosc-zip
+        unzip -q "$ZOOMOSC_ZIP" -d /tmp/zoomosc-zip
+        EXTRACTED_DMG=$(find /tmp/zoomosc-zip -name "*.dmg" | head -1)
+        mv "$EXTRACTED_DMG" "$ZOOMOSC_DMG"
         rm -rf "$ZOOMOSC_ZIP" /tmp/zoomosc-zip
     fi
 
