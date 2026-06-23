@@ -127,19 +127,21 @@ else
 fi
 
 # ── 4. ZoomOSC ───────────────────────────────────────────────────────────────
-step "ZoomOSC ISO + CavZRC"
+step "ZoomOSC ISO + CavZRC  ⚠ manual install required"
 echo
-echo "  These apps are licensed via Zoom Marketplace but downloaded from Liminal."
+echo "  These are licensed apps — you must download them manually."
 echo
-echo "  Step 1 — authorize on Zoom Marketplace (if not already done):"
-echo "    • ZoomOSC ISO:  https://marketplace.zoom.us/apps/VG_p3Bb_TwWe_bgZmPUaXw"
-echo "    • CavZRC:       https://marketplace.zoom.us/apps/hbAzPPSyQG-x7t4KVQQ4Sg"
+echo "  1. Authorize on Zoom Marketplace (opening both pages now):"
+echo "     • ZoomOSC ISO:  https://marketplace.zoom.us/apps/VG_p3Bb_TwWe_bgZmPUaXw"
+echo "     • CavZRC:       https://marketplace.zoom.us/apps/hbAzPPSyQG-x7t4KVQQ4Sg"
 echo
-echo "  Step 2 — download and install both apps from Liminal (opening now):"
-echo "    https://www.liminalet.com/downloads"
+open "https://marketplace.zoom.us/apps/VG_p3Bb_TwWe_bgZmPUaXw"
+sleep 1
+open "https://marketplace.zoom.us/apps/hbAzPPSyQG-x7t4KVQQ4Sg"
+echo "  2. After authorizing, download both apps from Liminal's site:"
+echo "     https://www.liminalet.com"
 echo
-open "https://www.liminalet.com/downloads"
-echo "  Download ZoomOSC ISO and CavZRC, install both, then come back here."
+echo "  3. Install both .dmg files and launch them before continuing."
 echo
 pause
 
