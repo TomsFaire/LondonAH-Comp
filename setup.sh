@@ -313,7 +313,12 @@ check_port 9090 "ZoomOSC TX"
 check_port 1234 "ZoomOSC RX"
 echo
 warn "Launching ZoomOSC — macOS may show a security warning..."
-open -a "ZoomOSC" 2>/dev/null || true
+if [[ -n "$ZOOMOSC_APP" ]]; then
+    open "$ZOOMOSC_APP" 2>/dev/null || true
+else
+    ZOOMOSC_APP=$(find /Applications -maxdepth 1 -iname "*zoomosc*" 2>/dev/null | head -1)
+    [[ -n "$ZOOMOSC_APP" ]] && open "$ZOOMOSC_APP" 2>/dev/null || open -a "ZoomOSC" 2>/dev/null || true
+fi
 sleep 2
 gatekeeper_guide "ZoomOSC"
 echo -e "  ${BOLD}Once ZoomOSC is open, continue to the next step.${NC}"
