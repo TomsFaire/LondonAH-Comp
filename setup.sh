@@ -31,6 +31,31 @@ err()    { echo -e "${RED}  ✗ $1${NC}"; }
 prompt() { read -rp "$(echo -e "  ${BOLD}→ $1:${NC} ")" "$2"; }
 pause()  { read -rp "$(echo -e "  ${BOLD}Press Enter to continue...${NC}")"; }
 
+# gatekeeper_guide APP_DISPLAY_NAME — opens Privacy & Security and shows bypass steps
+# Call this immediately after attempting to open an app that Gatekeeper may block.
+gatekeeper_guide() {
+    local name="$1"
+    echo
+    echo -e "  ${YELLOW}${BOLD}Gatekeeper security warning — action required:${NC}"
+    echo "  ┌──────────────────────────────────────────────────────────────────┐"
+    echo "  │  macOS may have blocked $name with a                            │"
+    echo "  │  'cannot be opened because the developer cannot be verified'     │"
+    echo "  │  dialog. If that happened:                                        │"
+    echo "  │                                                                   │"
+    echo "  │  1. Click  [Done]  on the Gatekeeper warning to dismiss it       │"
+    echo "  │  2. System Settings → Privacy & Security is opening now          │"
+    echo "  │  3. Scroll down to the Security section — you will see:          │"
+    echo "  │       \"$name was blocked from use...\"                          │"
+    echo "  │  4. Click  [Open Anyway]                                         │"
+    echo "  │  5. Click  [Open]  in the final confirmation dialog              │"
+    echo "  │                                                                   │"
+    echo "  │  If the app launched normally, skip this and continue below.     │"
+    echo "  └──────────────────────────────────────────────────────────────────┘"
+    echo
+    open "x-apple.systempreferences:com.apple.preference.security" 2>/dev/null || \
+        open "x-apple.systempreferences:com.apple.security" 2>/dev/null || true
+}
+
 # check_port PORT NAME — warns if UDP/TCP port is already in use
 check_port() {
     local port="$1" name="$2"
@@ -186,11 +211,15 @@ else
     ok "CavZRC already installed"
 fi
 
-# Clear Gatekeeper quarantine
+# Clear Gatekeeper quarantine on installed app
 warn "Clearing Gatekeeper quarantine on CavZRC..."
-CAVZRC_APP=$(find /Applications -maxdepth 1 -name "*ZoomRooms*AV*" -o -name "*CavZRC*" 2>/dev/null | head -1)
-[[ -n "$CAVZRC_APP" ]] && xattr -dr com.apple.quarantine "$CAVZRC_APP" 2>/dev/null || true
-ok "Gatekeeper cleared"
+CAVZRC_APP=$(find /Applications -maxdepth 1 \( -name "*ZoomRooms*AV*" -o -name "*ZoomRoomsCustom*" \) 2>/dev/null | head -1)
+if [[ -n "$CAVZRC_APP" ]]; then
+    xattr -dr com.apple.quarantine "$CAVZRC_APP" 2>/dev/null || true
+    ok "Quarantine cleared: $CAVZRC_APP"
+else
+    warn "CavZRC app not found in /Applications — quarantine not cleared"
+fi
 
 # Launch CavZRC and guide OSC config
 step "Configuring CavZRC OSC Ports"
@@ -198,9 +227,12 @@ echo "  Checking required ports..."
 check_port 9090 "CavZRC TX"
 check_port 1236 "CavZRC RX"
 echo
-warn "Launching CavZRC..."
+warn "Launching CavZRC — macOS may show a security warning..."
 open -a "ZoomRoomsCustomAVController" 2>/dev/null || open -a "Zoom Rooms Custom AV Controller" 2>/dev/null || true
-sleep 3
+sleep 2
+gatekeeper_guide "ZoomRoomsCustomAVController"
+echo -e "  ${BOLD}Once CavZRC is open, continue to the next step.${NC}"
+pause
 echo
 echo -e "  ${BOLD}Configure CavZRC OSC settings:${NC}"
 echo "  ┌─────────────────────────────────────────────────┐"
@@ -264,14 +296,28 @@ if [[ ! -d "/Applications/ZoomOSC.app" ]]; then
 else
     ok "ZoomOSC already installed"
 fi
+
+# Clear Gatekeeper quarantine on installed ZoomOSC app
+warn "Clearing Gatekeeper quarantine on ZoomOSC..."
+ZOOMOSC_APP=$(find /Applications -maxdepth 1 -iname "*zoomosc*" 2>/dev/null | head -1)
+if [[ -n "$ZOOMOSC_APP" ]]; then
+    xattr -dr com.apple.quarantine "$ZOOMOSC_APP" 2>/dev/null || true
+    ok "Quarantine cleared: $ZOOMOSC_APP"
+else
+    warn "ZoomOSC app not found in /Applications — quarantine not cleared"
+fi
+
 step "Configuring ZoomOSC OSC Ports"
 echo "  Checking required ports..."
 check_port 1234 "ZoomOSC TX"
 check_port 9091 "ZoomOSC RX"
 echo
-warn "Launching ZoomOSC..."
+warn "Launching ZoomOSC — macOS may show a security warning..."
 open -a "ZoomOSC" 2>/dev/null || true
-sleep 3
+sleep 2
+gatekeeper_guide "ZoomOSC"
+echo -e "  ${BOLD}Once ZoomOSC is open, continue to the next step.${NC}"
+pause
 echo
 echo -e "  ${BOLD}Configure ZoomOSC OSC settings:${NC}"
 echo "  ┌──────────────────────────────────────────────────────┐"
