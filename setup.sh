@@ -13,7 +13,7 @@ set -u
 set -o pipefail
 
 # Clean up any temp files on exit (handles crashes and early exits)
-trap 'rm -rf /tmp/Companion.dmg /tmp/gslide-opener.zip /tmp/gslide-opener-extracted /tmp/ZoomRoomsCustomAVController.dmg /tmp/ZoomOSC-Installer.dmg /tmp/ZoomOSC-download.zip /tmp/zoomosc-zip /tmp/LondonCompanion_configured.companionconfig 2>/dev/null' EXIT
+trap 'rm -rf /tmp/Companion.dmg /tmp/gslide-opener.zip /tmp/gslide-opener-extracted /tmp/ZoomRoomsCustomAVController.dmg /tmp/ZoomOSC-Installer.dmg /tmp/ZoomOSC-download.zip /tmp/zoomosc-zip 2>/dev/null; rm -f "${SCRIPT_DIR}/LondonCompanion_configured.companionconfig" 2>/dev/null' EXIT
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/LondonCompanion.companionconfig"
@@ -342,25 +342,29 @@ prompt "StageTimer Room ID  (e.g. E5KJ2Y79)" ST_ROOM_ID
 prompt "StageTimer API Key" ST_API_KEY
 echo
 
-PATCHED_CONFIG="/tmp/LondonCompanion_configured.companionconfig"
+PATCHED_CONFIG="$SCRIPT_DIR/LondonCompanion_configured.companionconfig"
 cp "$CONFIG_FILE" "$PATCHED_CONFIG"
 [[ -n "$ST_ROOM_ID" ]] && sed -i '' "s/__STAGETIMER_ROOM_ID__/$ST_ROOM_ID/g" "$PATCHED_CONFIG"
 [[ -n "$ST_API_KEY" ]] && sed -i '' "s/__STAGETIMER_API_KEY__/$ST_API_KEY/g" "$PATCHED_CONFIG"
 CONFIG_FILE="$PATCHED_CONFIG"
-ok "Config prepared with StageTimer credentials"
+ok "Config prepared — saved next to setup.sh as:"
+echo -e "     ${BOLD}$CONFIG_FILE${NC}"
 
 # ── 9. Import the config ──────────────────────────────────────────────────────
 step "Import the London AH config"
 echo
 echo "  Now import the full Companion config."
+echo "  A Finder window will open showing the file to import."
+echo
 echo "  In the browser page that opens:"
 echo
 echo "    1. Click  [Import]"
-echo "    2. Select:"
+echo "    2. Select the highlighted file:"
 echo -e "       ${BOLD}$CONFIG_FILE${NC}"
 echo "    3. Click  [Import full config]"
 echo "    4. Companion will restart — wait for it to come back up"
 echo
+open -R "$CONFIG_FILE"
 open "http://localhost:8000/import-export"
 echo
 echo "  Config imported and Companion restarted?"
