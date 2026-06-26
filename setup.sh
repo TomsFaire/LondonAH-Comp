@@ -13,7 +13,7 @@ set -u
 set -o pipefail
 
 # Clean up any temp files on exit (handles crashes and early exits)
-trap 'rm -rf /tmp/Companion.dmg /tmp/gslide-opener.zip /tmp/gslide-opener-extracted /tmp/ZoomRoomsCustomAVController.dmg /tmp/ZoomOSC-Installer.dmg /tmp/ZoomOSC-download.zip /tmp/zoomosc-zip 2>/dev/null' EXIT
+trap 'rm -rf /tmp/Companion.dmg /tmp/gslide-opener.zip /tmp/gslide-opener-extracted /tmp/ZoomRoomsCustomAVController.dmg /tmp/ZoomOSC-Installer.dmg /tmp/ZoomOSC-download.zip /tmp/zoomosc-zip /tmp/LondonCompanion_configured.companionconfig 2>/dev/null' EXIT
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/LondonCompanion.companionconfig"
@@ -333,7 +333,23 @@ echo
 echo "  All modules imported?"
 pause
 
-# ── 8. Import the config ──────────────────────────────────────────────────────
+# ── 8. StageTimer credentials ────────────────────────────────────────────────
+step "StageTimer configuration"
+echo "  The Companion config needs your StageTimer credentials."
+echo "  Find your API key at: stagetimer.io → Settings → API"
+echo
+prompt "StageTimer Room ID  (e.g. E5KJ2Y79)" ST_ROOM_ID
+prompt "StageTimer API Key" ST_API_KEY
+echo
+
+PATCHED_CONFIG="/tmp/LondonCompanion_configured.companionconfig"
+cp "$CONFIG_FILE" "$PATCHED_CONFIG"
+[[ -n "$ST_ROOM_ID" ]] && sed -i '' "s/__STAGETIMER_ROOM_ID__/$ST_ROOM_ID/g" "$PATCHED_CONFIG"
+[[ -n "$ST_API_KEY" ]] && sed -i '' "s/__STAGETIMER_API_KEY__/$ST_API_KEY/g" "$PATCHED_CONFIG"
+CONFIG_FILE="$PATCHED_CONFIG"
+ok "Config prepared with StageTimer credentials"
+
+# ── 9. Import the config ──────────────────────────────────────────────────────
 step "Import the London AH config"
 echo
 echo "  Now import the full Companion config."

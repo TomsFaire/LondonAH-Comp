@@ -2826,8 +2826,8 @@ instances:
     label: stagetimer
     isFirstInit: false
     config:
-      roomId: E5KJ2Y79
-      apiKey: 6b60edb6ec199a84a97d92aa998d954d
+      roomId: __STAGETIMER_ROOM_ID__
+      apiKey: __STAGETIMER_API_KEY__
       apiUrl: https://api.stagetimer.io/v1/
     secrets: {}
     lastUpgradeIndex: -1
