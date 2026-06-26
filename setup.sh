@@ -13,7 +13,7 @@ set -u
 set -o pipefail
 
 # Clean up any temp files on exit (handles crashes and early exits)
-trap 'rm -rf /tmp/Companion.dmg /tmp/gslide-opener.zip /tmp/gslide-opener-extracted /tmp/ZoomRoomsCustomAVController.dmg /tmp/ZoomOSC-Installer.dmg /tmp/ZoomOSC-download.zip /tmp/zoomosc-zip 2>/dev/null; rm -f "${SCRIPT_DIR}/LondonCompanion_configured.companionconfig" 2>/dev/null' EXIT
+trap 'rm -rf /tmp/Companion.dmg /tmp/gslide-opener.zip /tmp/gslide-opener-extracted /tmp/ZoomRoomsCustomAVController.dmg /tmp/ZoomOSC-Installer.dmg /tmp/ZoomOSC-download.zip /tmp/zoomosc-zip 2>/dev/null; rm -f "${SCRIPT_DIR}/CONFIGURED_LondonCompanion.companionconfig" 2>/dev/null' EXIT
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/LondonCompanion.companionconfig"
@@ -224,8 +224,8 @@ fi
 # Launch CavZRC and guide OSC config
 step "Configuring CavZRC OSC Ports"
 echo "  Checking required ports..."
-check_port 9090 "CavZRC TX"
-check_port 1236 "CavZRC RX"
+check_port 9091 "CavZRC TX"
+check_port 2345 "CavZRC RX"
 echo
 warn "Launching CavZRC — macOS may show a security warning..."
 open -a "ZoomRoomsCustomAVController" 2>/dev/null || open -a "Zoom Rooms Custom AV Controller" 2>/dev/null || true
@@ -240,8 +240,8 @@ echo "  │  In CavZRC → OSC Settings (top-right button)   │"
 echo "  │                                                  │"
 echo "  │  Enable OSC for network control  →  ON          │"
 echo "  │  Transmission IP                 →  127.0.0.1   │"
-echo "  │  Transmission Port               →  9090         │"
-echo "  │  Receiving Port                  →  1236         │"
+echo "  │  Transmission Port               →  9091         │"
+echo "  │  Receiving Port                  →  2345         │"
 echo "  │  OSC Output Header               →  /roomosc     │"
 echo "  │  OSC Network Interface           →  All          │"
 echo "  │  Use IP Allow List               →  OFF          │"
@@ -309,8 +309,8 @@ fi
 
 step "Configuring ZoomOSC OSC Ports"
 echo "  Checking required ports..."
-check_port 1234 "ZoomOSC TX"
-check_port 9091 "ZoomOSC RX"
+check_port 9090 "ZoomOSC TX"
+check_port 1234 "ZoomOSC RX"
 echo
 warn "Launching ZoomOSC — macOS may show a security warning..."
 open -a "ZoomOSC" 2>/dev/null || true
@@ -324,8 +324,8 @@ echo "  ┌───────────────────────
 echo "  │  In ZoomOSC → OSC Settings tab, enter:              │"
 echo "  │                                                       │"
 echo "  │  Transmission IP       →  127.0.0.1                  │"
-echo "  │  Transmission Port     →  1234                        │"
-echo "  │  Receiving Port        →  9091                        │"
+echo "  │  Transmission Port     →  9090                        │"
+echo "  │  Receiving Port        →  1234                        │"
 echo "  │  OSC Output Rate       →  Fastest Possible            │"
 echo "  │  Listen to Interface   →  All                         │"
 echo "  │  Subscribe to          →  All                         │"
@@ -388,7 +388,7 @@ prompt "StageTimer Room ID  (e.g. E5KJ2Y79)" ST_ROOM_ID
 prompt "StageTimer API Key" ST_API_KEY
 echo
 
-PATCHED_CONFIG="$SCRIPT_DIR/LondonCompanion_configured.companionconfig"
+PATCHED_CONFIG="$SCRIPT_DIR/CONFIGURED_LondonCompanion.companionconfig"
 cp "$CONFIG_FILE" "$PATCHED_CONFIG"
 [[ -n "$ST_ROOM_ID" ]] && sed -i '' "s/__STAGETIMER_ROOM_ID__/$ST_ROOM_ID/g" "$PATCHED_CONFIG"
 [[ -n "$ST_API_KEY" ]] && sed -i '' "s/__STAGETIMER_API_KEY__/$ST_API_KEY/g" "$PATCHED_CONFIG"
